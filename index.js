@@ -73,9 +73,9 @@ app.listen(port, () => {
     });
 
  //Controlador de Admin
-//  app.get('/login', (req, res) => {
-//     res.status(200).render("login", { isLogin: isLogin, login: login });
-//     });
+ app.get('/login', (req, res) => {
+     res.status(200).render("login", { isLogin: isLogin, login: login }); 
+});
 
 //     app.post('/login', (req, res) => {
 //     if (req.body.usuario == "Doctor") {
