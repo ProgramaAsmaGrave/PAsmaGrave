@@ -59,30 +59,30 @@ app.listen(port, () => {
      console.log('Dominio principal');
      res.render('index');
 });
-app.use(
-    multer({
-        storage: multer.diskStorage({
-            destination: "./public/images/avatars",
-            limits: { fileSize: 10 * 1024 * 1024 },
-            filename: function (req, file, cb) {
-                cb(null, "avatar" + ".jpg");
-            },
-        }),
-    }).single("file")
-);
+// app.use(
+//     multer({
+//         storage: multer.diskStorage({
+//             destination: "./public/images/avatars",
+//             limits: { fileSize: 10 * 1024 * 1024 },
+//             filename: function (req, file, cb) {
+//                 cb(null, "avatar" + ".jpg");
+//             },
+//         }),
+//     }).single("file")
+// );
 
-//Multer para carga en DataBase
-app.use(
-    multer({
-        storage: multer.diskStorage({
-            destination: "./public/images/databaseimg",
-            limits: { fileSize: 10 * 1024 * 1024 },
-            filename: function (req, file, cb) {
-                cb(null, file.fieldname);
-            },
-        }),
-    }).single("image")
-);
+// //Multer para carga en DataBase
+// app.use(
+//     multer({
+//         storage: multer.diskStorage({
+//             destination: "./public/images/databaseimg",
+//             limits: { fileSize: 10 * 1024 * 1024 },
+//             filename: function (req, file, cb) {
+//                 cb(null, file.fieldname);
+//             },
+//         }),
+//     }).single("image")
+// );
 
 app.post("/cargarImagen", async (req, res) => {
     res.render("config");
