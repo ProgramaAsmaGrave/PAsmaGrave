@@ -79,93 +79,93 @@ app.listen(port, () => {
     res.status(200).render("login", { isLogin: isLogin, login: login });
     });
 
-    app.post('/login', (req, res) => {
-    if (req.body.usuario == "Doctor") {
-        Admin.find({ usuario: req.body.usuario }, (err, docs) => {
-            bcrypt.compare(
-                req.body.contraseña,
-                bcrypt.hashSync(docs[0].contraseña, 5),
-                (err, resul) => {
-                    console.log(docs[0].contraseña);
-                    if (err) throw err;
-                    if (resul) {
-                        res.session = true;
-                        login = res.session;
-                        isLogin = 1;
-                        res.status(200).render("index", { login: login });
-                    } else {
-                        isLogin = 2;
-                        res.status(200).render("login", {
-                            isLogin: isLogin,
-                            login: login,
-                        });
-                    }
-                }
-            );
-        });
-    } else {
-        isLogin = 3;
-        res.status(200).render("login", { isLogin: isLogin, login: login });
-    }
-    });
+//     app.post('/login', (req, res) => {
+//     if (req.body.usuario == "Doctor") {
+//         Admin.find({ usuario: req.body.usuario }, (err, docs) => {
+//             bcrypt.compare(
+//                 req.body.contraseña,
+//                 bcrypt.hashSync(docs[0].contraseña, 5),
+//                 (err, resul) => {
+//                     console.log(docs[0].contraseña);
+//                     if (err) throw err;
+//                     if (resul) {
+//                         res.session = true;
+//                         login = res.session;
+//                         isLogin = 1;
+//                         res.status(200).render("index", { login: login });
+//                     } else {
+//                         isLogin = 2;
+//                         res.status(200).render("login", {
+//                             isLogin: isLogin,
+//                             login: login,
+//                         });
+//                     }
+//                 }
+//             );
+//         });
+//     } else {
+//         isLogin = 3;
+//         res.status(200).render("login", { isLogin: isLogin, login: login });
+//     }
+//     });
 
-    app.post('/logout', (req, res)  => {
-        if (login) {
-            res.redirect("/");
-            req.session.destroy();
-            login = false;
-        } else {
-            res.redirect("/");
-        }
-    });
+//     app.post('/logout', (req, res)  => {
+//         if (login) {
+//             res.redirect("/");
+//             req.session.destroy();
+//             login = false;
+//         } else {
+//             res.redirect("/");
+//         }
+//     });
 
-app.post('/subirPost', (req, res) => {
-    if (login) {
-        res.status(200).render("postPrueba", {
-            isLogin: isLogin,
-            login: login,
-        });
-    } else {
-        isLogin = 4;
-        res.redirect("/"); //Hacer vista o algo con esto
-    }
-});
+// app.post('/subirPost', (req, res) => {
+//     if (login) {
+//         res.status(200).render("postPrueba", {
+//             isLogin: isLogin,
+//             login: login,
+//         });
+//     } else {
+//         isLogin = 4;
+//         res.redirect("/"); //Hacer vista o algo con esto
+//     }
+// });
 
-// REVISARR
- app.get('/seccionAdmin', (req, res) => {
+// // REVISARR
+//  app.get('/seccionAdmin', (req, res) => {
+// //     res.status(200).render("edicionPosteos", { data: TwoModel.find() });
+//      res.status(200).render("edicionPosteos", { data: PostModel.find() });
+//  });
+
+// app.get('/config', (req, res)  => {
+//     res.status(200).render("config");
+// });
+
+
+
+// app.post('/postear', (req, res)  => {
+//     const pos = new PostModel({
+//         id: "2",
+//         fecha: new Date(req.body.fecha),
+//         titulo: req.body.titulo,
+//         descripcion: req.body.descripcion,
+//         imagen: "./public/images/databaseimg/" + req.body.image,
+//         enlace: req.body.enlace,
+//         tags: req.body.tag,
+//     });
+
 //     res.status(200).render("edicionPosteos", { data: TwoModel.find() });
-     res.status(200).render("edicionPosteos", { data: PostModel.find() });
- });
-
-app.get('/config', (req, res)  => {
-    res.status(200).render("config");
-});
-
-
-
-app.post('/postear', (req, res)  => {
-    const pos = new PostModel({
-        id: "2",
-        fecha: new Date(req.body.fecha),
-        titulo: req.body.titulo,
-        descripcion: req.body.descripcion,
-        imagen: "./public/images/databaseimg/" + req.body.image,
-        enlace: req.body.enlace,
-        tags: req.body.tag,
-    });
-
-    res.status(200).render("edicionPosteos", { data: TwoModel.find() });
-    pos.save()
-        .then((doc) => {
-            console.log(doc);
-            console.log("cargado");
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-    console.log(req.body.image);
-    res.status(200).render("edicionPosteos", { data: PostModel.find() });
-});
+//     pos.save()
+//         .then((doc) => {
+//             console.log(doc);
+//             console.log("cargado");
+//         })
+//         .catch((err) => {
+//             console.error(err);
+//         });
+//     console.log(req.body.image);
+//     res.status(200).render("edicionPosteos", { data: PostModel.find() });
+// });
 
 //error404
 app.get('/*', (req, res) => {
