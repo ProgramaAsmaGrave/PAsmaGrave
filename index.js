@@ -8,11 +8,8 @@ const app = express();
 const cors = require("cors");
 const session = require("express-session");
 const multer = require("multer");
-const port = 3000;
-//Corremos el servidor en el puerto seleccionado
-app.listen(port, () => {
-    console.log(`Servidor corriendo en el puerto ${port} correctamente`);
-});
+
+
 
 app.set("view engine", "ejs");
 //Defino la localización de mis vistas
@@ -35,6 +32,16 @@ app.use(express.json());
 //Configurando archivos estáticos
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+
+
+
+
+const port = 3000;
+//Corremos el servidor en el puerto seleccionado
+app.listen(port, () => {
+    console.log(`Servidor corriendo en el puerto ${port} correctamente`);
+});
+
 
 //Agrego un enrutador compatible
 
@@ -86,3 +93,4 @@ app.post("/guardarImagen", async (req, res) => {
 
 // app.use("/", myRouter);
 
+module.exports = app;
