@@ -5,7 +5,7 @@ const path = require("path");
 const morgan = require("morgan");
 const cloudinary = require("cloudinary").v2;
 const app = express();
-const myRouter = require("./routes/myRouter");
+// const myRouter = require("./routes/myRouter");
 const cors = require("cors");
 const session = require("express-session");
 const multer = require("multer");
@@ -49,10 +49,10 @@ app.use(express.static(path.join(__dirname, "public")));
             console.log('Conectado a la DB');
         });
 
-// app.get('/', (req, res) => {
-//     console.log('Dominio principal');
-//     res.render('pagina');
-// });
+ app.get('/', (req, res) => {
+     console.log('Dominio principal');
+     res.render('index');
+});
 app.use(
     multer({
         storage: multer.diskStorage({
@@ -85,5 +85,5 @@ app.post("/guardarImagen", async (req, res) => {
     res.render("config");
 });
 
-app.use("/", myRouter);
+// app.use("/", myRouter);
 
