@@ -6,7 +6,7 @@ const cloudinary = require("cloudinary").v2;
 const app = express();
 // const myRouter = require("./routes/myRouter");
 const cors = require("cors");
-const session = require("express-session");
+const session = require("cookie-session");
 const multer = require("multer");
 
 
