@@ -107,15 +107,15 @@ app.listen(port, () => {
     }
  });
 
-//     app.post('/logout', (req, res)  => {
-//         if (login) {
-//             res.redirect("/");
-//             req.session.destroy();
-//             login = false;
-//         } else {
-//             res.redirect("/");
-//         }
-//     });
+app.post('/logout', (req, res)  => {
+        if (login) {
+            res.redirect("/");
+            req.session.destroy();
+            login = false;
+        } else {
+            res.redirect("/");
+        }
+    });
 
 // app.post('/subirPost', (req, res) => {
 //     if (login) {
