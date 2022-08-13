@@ -1,10 +1,10 @@
 const express = require("express");
+const app = express();
 const path = require("path");
 const morgan = require("morgan");
 const cloudinary = require("cloudinary").v2;
-const app = express();
 const cors = require("cors");
-const moment = require("moment");
+//const moment = require("moment");
 const session = require("cookie-session");
 //mongoose
 
@@ -13,10 +13,10 @@ const mongoose = require("mongoose");
 // const PostModel = require("./models/postModel");
 
 //hash
-const bcrypt = require("bcrypt");
+  //onst bcrypt = require("bcrypt");
 //multer
-const multer = require("multer");
-const upload = multer({ dest: "images/upload/" });
+   //const multer = require("multer");
+   //const upload = multer({ dest: "images/upload/" });
 
 //variables globales para el logeo y los sweetsalert
 global.isLogin = 0;
@@ -166,9 +166,9 @@ app.listen(port, () => {
 // });
 
 //error404
-app.get('/*', (req, res) => {
-    res.status(200).render("error404");
-});
+// app.get('/*', (req, res) => {
+//     res.status(200).render("error404");
+// });
 //Termina controller Admin
 
 
