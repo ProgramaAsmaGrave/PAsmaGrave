@@ -13,7 +13,7 @@ const Admin = require("./models/myModel");
 // const PostModel = require("./models/postModel");
 
 //hash
-  //onst bcrypt = require("bcrypt");
+  const bcrypt = require("bcrypt");
 //multer
    //const multer = require("multer");
    //const upload = multer({ dest: "images/upload/" });
