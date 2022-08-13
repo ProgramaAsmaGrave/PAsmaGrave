@@ -120,7 +120,7 @@ app.listen(port, () => {
         }
     });
 
-app.post('/subirPost', (req, res) = (req, res) => {
+app.post('/subirPost', (req, res) => {
     if (login) {
         res.status(200).render("postPrueba", {
             isLogin: isLogin,
