@@ -8,9 +8,8 @@ const moment = require("moment");
 const session = require("cookie-session");
 //mongoose
 const mongoose = require("mongoose");
-const OneModel = require("../models/myModel");
-const PostModel = require("../models/postModel");
-const Admin = require("../models/myModel");
+const Admin = require("./models/myModel");
+const PostModel = require("./models/postModel");
 //hash
 const bcrypt = require("bcrypt");
 const { hash } = require("bcrypt");
@@ -82,7 +81,7 @@ app.listen(port, () => {
 
     app.post('/login', (req, res) => {
     if (req.body.usuario == "Doctor") {
-        OneModel.find({ usuario: req.body.usuario }, (err, docs) => {
+        Admin.find({ usuario: req.body.usuario }, (err, docs) => {
             bcrypt.compare(
                 req.body.contraseña,
                 bcrypt.hashSync(docs[0].contraseña, 5),
@@ -132,10 +131,11 @@ app.post('/subirPost', (req, res) => {
     }
 });
 
-app.get('/seccionAdmin', (req, res) => {
-    res.status(200).render("edicionPosteos", { data: TwoModel.find() });
-    res.status(200).render("edicionPosteos", { data: PostModel.find() });
-});
+// REVISARR
+ app.get('/seccionAdmin', (req, res) => {
+//     res.status(200).render("edicionPosteos", { data: TwoModel.find() });
+     res.status(200).render("edicionPosteos", { data: PostModel.find() });
+ });
 
 app.get('/config', (req, res)  => {
     res.status(200).render("config");
