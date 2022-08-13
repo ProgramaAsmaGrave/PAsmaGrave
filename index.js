@@ -14,7 +14,6 @@ const mongoose = require("mongoose");
 
 //hash
 const bcrypt = require("bcrypt");
-const { hash } = require("bcrypt");
 //multer
 const multer = require("multer");
 const upload = multer({ dest: "images/upload/" });
