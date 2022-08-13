@@ -107,7 +107,7 @@ app.listen(port, () => {
     }
  });
 
-app.post('/logout', (req, res)  => {
+app.get('/logout', (req, res)  => {
         if (login) {
             res.redirect("/");
             req.session.destroy();
