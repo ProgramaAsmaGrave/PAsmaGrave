@@ -7,9 +7,11 @@ const cors = require("cors");
 const moment = require("moment");
 const session = require("cookie-session");
 //mongoose
+
 const mongoose = require("mongoose");
-const Admin = require("./models/myModel");
-const PostModel = require("./models/postModel");
+// const Admin = require("./models/myModel");
+// const PostModel = require("./models/postModel");
+
 //hash
 const bcrypt = require("bcrypt");
 const { hash } = require("bcrypt");
@@ -21,14 +23,14 @@ const upload = multer({ dest: "images/upload/" });
 global.isLogin = 0;
 global.login = false;
 
-const msg = new Admin({
-    nombre: "admin",
-    apellido: "1",
-    usuario: "Admin1",
-    contraseña: "administrador",
-    avatar: "...",
-    email: "adminhospital@gmail.com",
-});
+// const msg = new Admin({
+//     nombre: "admin",
+//     apellido: "1",
+//     usuario: "Admin1",
+//     contraseña: "administrador",
+//     avatar: "...",
+//     email: "adminhospital@gmail.com",
+// });
 
 app.set("view engine", "ejs");
 //Defino la localización de mis vistas
@@ -51,9 +53,6 @@ app.use(express.json());
 //Configurando archivos estáticos
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-
-
-
 
 const port = 3000;
 //Corremos el servidor en el puerto seleccionado
