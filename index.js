@@ -9,7 +9,7 @@ const session = require("cookie-session");
 //mongoose
 
 const mongoose = require("mongoose");
-// const Admin = require("./models/myModel");
+const Admin = require("./models/myModel");
 // const PostModel = require("./models/postModel");
 
 //hash
