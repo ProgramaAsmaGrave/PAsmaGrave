@@ -77,35 +77,35 @@ app.listen(port, () => {
      res.status(200).render("login", { isLogin: isLogin, login: login }); 
 });
 
-//     app.post('/login', (req, res) => {
-//     if (req.body.usuario == "Doctor") {
-//         Admin.find({ usuario: req.body.usuario }, (err, docs) => {
-//             bcrypt.compare(
-//                 req.body.contraseña,
-//                 bcrypt.hashSync(docs[0].contraseña, 5),
-//                 (err, resul) => {
-//                     console.log(docs[0].contraseña);
-//                     if (err) throw err;
-//                     if (resul) {
-//                         res.session = true;
-//                         login = res.session;
-//                         isLogin = 1;
-//                         res.status(200).render("index", { login: login });
-//                     } else {
-//                         isLogin = 2;
-//                         res.status(200).render("login", {
-//                             isLogin: isLogin,
-//                             login: login,
-//                         });
-//                     }
-//                 }
-//             );
-//         });
-//     } else {
-//         isLogin = 3;
-//         res.status(200).render("login", { isLogin: isLogin, login: login });
-//     }
-//     });
+     app.post('/login', (req, res) => {
+     if (req.body.usuario == "Doctor") {
+        Admin.find({ usuario: req.body.usuario }, (err, docs) => {
+            bcrypt.compare(
+                 req.body.contraseña,
+                 bcrypt.hashSync(docs[0].contraseña, 5),
+                 (err, resul) => {
+                     console.log(docs[0].contraseña);
+                     if (err) throw err;
+                     if (resul) {
+                         res.session = true;
+                         login = res.session;
+                         isLogin = 1;
+                         res.status(200).render("index", { login: login });
+                     } else {
+                         isLogin = 2;
+                         res.status(200).render("login", {
+                             isLogin: isLogin,
+                             login: login,
+                         });
+                     }
+                 }
+             );
+         });
+     } else {
+         isLogin = 3;
+        res.status(200).render("login", { isLogin: isLogin, login: login });
+    }
+ });
 
 //     app.post('/logout', (req, res)  => {
 //         if (login) {
