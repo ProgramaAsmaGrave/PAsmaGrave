@@ -13,4 +13,5 @@ router.route("/seccionAdmin").get(adminController.seccionAdmin);
 router.route("/postear").post(adminController.subirPost);
 router.route("/config").get(adminController.config);
 router.route("/*").get(adminController.error404);
+
 module.exports = router;
