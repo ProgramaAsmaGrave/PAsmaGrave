@@ -9,7 +9,8 @@ const cors = require("cors");
 const session = require("cookie-session");
 const multer = require("multer");
 
-
+global.isLogin = 0;
+global.login = false;
 
 app.set("view engine", "ejs");
 //Defino la localización de mis vistas
