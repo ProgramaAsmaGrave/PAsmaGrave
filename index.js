@@ -13,10 +13,10 @@ const Admin = require("./models/myModel");
 // const PostModel = require("./models/postModel");
 
 //hash
-  const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 //multer
-   //const multer = require("multer");
-   //const upload = multer({ dest: "images/upload/" });
+//const multer = require("multer");
+//const upload = multer({ dest: "images/upload/" });
 
 //variables globales para el logeo y los sweetsalert
 global.isLogin = 0;
@@ -58,64 +58,89 @@ const port = 3000;
 app.listen(port, () => {
     console.log(`Servidor corriendo en el puerto ${port} correctamente`);
 });
-    //Conexión al cloud de Mongodb Atlas ...
-    mongoose
-        .connect('mongodb+srv://hrgarcia:EaFhXeNfxbG277Zz@cluster0.fs8tm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+//Conexión al cloud de Mongodb Atlas ...
+mongoose
+    .connect(
+        "mongodb+srv://hrgarcia:EaFhXeNfxbG277Zz@cluster0.fs8tm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+        {
             useNewUrlParser: true,
-        })
-        .then((con) => {
-            console.log('Conectado a la DB');
-        });
- //controlador principal
- app.get('/', (req, res) => {
-     console.log('Dominio principal');
-     res.status(200).render("index", { login:login, isLogin:isLogin});
+        }
+    )
+    .then((con) => {
+        console.log("Conectado a la DB");
     });
-
- //Controlador de Admin
- app.get('/login', (req, res) => {
-     res.status(200).render("login", { isLogin: isLogin, login: login }); 
+//controlador principal
+app.get("/", (req, res) => {
+    console.log("Dominio principal");
+    res.status(200).render("index", { login: login, isLogin: isLogin });
 });
 
-     app.post('/login', (req, res) => {
-     if (req.body.usuario == "Doctor") {
+//Controlador de Admin
+app.get("/login", (req, res) => {
+    res.status(200).render("login", { isLogin: isLogin, login: login });
+});
+
+app.post("/login", (req, res) => {
+    if (req.body.usuario == "Doctor") {
         Admin.find({ usuario: req.body.usuario }, (err, docs) => {
             bcrypt.compare(
-                 req.body.contraseña,
-                 bcrypt.hashSync(docs[0].contraseña, 5),
-                 (err, resul) => {
-                     console.log(docs[0].contraseña);
-                     if (err) throw err;
-                     if (resul) {
-                         res.session = true;
-                         login = res.session;
-                         isLogin = 1;
-                         res.status(200).render("index", { login: login });
-                     } else {
-                         isLogin = 2;
-                         res.status(200).render("login", {
-                             isLogin: isLogin,
-                             login: login,
-                         });
-                     }
-                 }
-             );
-         });
-     } else {
-         isLogin = 3;
+                req.body.contraseña,
+                bcrypt.hashSync(docs[0].contraseña, 5),
+                (err, resul) => {
+                    console.log(docs[0].contraseña);
+                    if (err) throw err;
+                    if (resul) {
+                        res.session = true;
+                        login = res.session;
+                        isLogin = 1;
+                        res.status(200).render("index", { login: login });
+                    } else {
+                        isLogin = 2;
+                        res.status(200).render("login", {
+                            isLogin: isLogin,
+                            login: login,
+                        });
+                    }
+                }
+            );
+        });
+    } else {
+        isLogin = 3;
         res.status(200).render("login", { isLogin: isLogin, login: login });
     }
- });
+});
 
-app.get('/logout', (req, res)  => {
-        if (login) {
-            res.redirect("/");
-            req.session.destroy();
-            login = false;
-        } else {
-            res.redirect("/");
-        }
-    });
+app.get("/logout", (req, res) => {
+    if (login) {
+        res.redirect("/");
+        req.session.destroy();
+        login = false;
+    } else {
+        res.redirect("/");
+    }
+});
+app.get("/error404", (req, res) => {
+    res.status(200).render("error404");
+});
+
+//RUTAS
+/*
+    router.route("/subirPost").get(adminController.postear2);
+    router.route("/seccionAdmin").get(adminController.seccionAdmin);
+    router.route("/postear").post(adminController.subirPost);
+    router.route("/edicion").get(adminController.edicion);
+    router.route("/editarPosteo").get(adminController.editarPost);
+    router.route("/config").get(adminController.config);
+    router.route("/ChangePassword").get(adminController.seccionAdmin).post(adminController.ChangePassword);
+    router.route("/ChangeUser").get(adminController.seccionAdmin).post(adminController.ChangeUser);
+    router.route("/user").get(adminController.user);
+    router.route("/visualizar").get(adminController.visualizar);
+    router.route("/kinesiologia*").get(adminController.kinesiologia);
+    router.route("/saludMental*").get(adminController.saludMental);
+    router.route("/neumonologia*").get(adminController.neumonologia);
+    router.route("/*").get(adminController.error404);
+    module.exports = router;
+*/
 
 // app.post('/subirPost', (req, res) => {
 //     if (login) {
@@ -138,8 +163,6 @@ app.get('/logout', (req, res)  => {
 // app.get('/config', (req, res)  => {
 //     res.status(200).render("config");
 // });
-
-
 
 // app.post('/postear', (req, res)  => {
 //     const pos = new PostModel({
@@ -170,8 +193,6 @@ app.get('/logout', (req, res)  => {
 //     res.status(200).render("error404");
 // });
 //Termina controller Admin
-
-
 
 // app.use(
 //     multer({
