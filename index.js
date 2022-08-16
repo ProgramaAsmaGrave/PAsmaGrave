@@ -142,17 +142,17 @@ app.get("/error404", (req, res) => {
     module.exports = router;
 */
 
-// app.post('/subirPost', (req, res) => {
-//     if (login) {
-//         res.status(200).render("postPrueba", {
-//             isLogin: isLogin,
-//             login: login,
-//         });
-//     } else {
-//         isLogin = 4;
-//         res.redirect("/"); //Hacer vista o algo con esto
-//     }
-// });
+ app.post('/subirPost', (req, res) => {
+     if (login) {
+         res.status(200).render("postPrueba", {
+             isLogin: isLogin,
+             login: login,
+         });
+     } else {
+         isLogin = 4;
+         res.redirect("/"); //Hacer vista o algo con esto
+     }
+ });
 
 // // REVISARR
 //  app.get('/seccionAdmin', (req, res) => {
