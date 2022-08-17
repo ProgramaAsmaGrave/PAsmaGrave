@@ -144,7 +144,7 @@ app.get("/neumonologia", (req, res) => {
 });
 
 app.get('/seccionAdmin', (req, res) => {
-    //if(login){
+   // if(login){
         res.status(200).render("edicionPosteos", {data:PostModel.find()});
     //}
     //else{
@@ -159,8 +159,8 @@ app.get("/config", (req, res) => {
 });
 app.post("/ChangePassword", (req, res) => {
     res.status(200).render("login");
-    console.log("EMIPUTO");
     if (login) {
+        console.log("ENTRO A CHANGE");
         Admin.findOneAndUpdate({ nombre: "admin" },
             { $set: { contraseña: req.body.contraseña } }, { new: true }, function (err, doc) {
                 if (err) console.log("Error ", err);
