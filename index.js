@@ -144,21 +144,18 @@ app.get("/neumonologia", (req, res) => {
 });
 
 app.get('/seccionAdmin', (req, res) => {
-  res.status(200).render("edicionPosteos", { data: PostModel.find() });
-    res.status(200).render("edicionPosteos", { data: PostModel.find() });
+    if(login){
+        res.status(200).render("edicionPosteos", {data:PostModel.find()});
+    }
+    else{
+    isLogin = 4
+    res.redirect("/login"); 
+    }
 });
 
 
 app.get("/config", (req, res) => {
     res.status(200).render("config");
-});
-app.get("/subirPost", (req, res) => {
-    res.status(200).render("postear2");
-});
-
-app.get("/ChangePassword", (req, res) => {
-    res.status(200).render("config");
-    
 });
 app.post("/ChangePassword", (req, res) => {
     res.status(200).render("login");
@@ -174,6 +171,12 @@ app.post("/ChangePassword", (req, res) => {
 
     }
 });
+
+app.get("/subirPost", (req, res) => {
+    res.status(200).render("postear2");
+});
+
+
 
 
 
