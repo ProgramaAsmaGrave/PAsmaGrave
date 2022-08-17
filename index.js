@@ -144,13 +144,13 @@ app.get("/neumonologia", (req, res) => {
 });
 
 app.get('/seccionAdmin', (req, res) => {
-    if(login){
+    //if(login){
         res.status(200).render("edicionPosteos", {data:PostModel.find()});
-    }
-    else{
-    isLogin = 4
-    res.redirect("/login"); 
-    }
+    //}
+    //else{
+    //isLogin = 4
+    //res.redirect("/login"); 
+    //}
 });
 
 
