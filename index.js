@@ -124,6 +124,23 @@ app.get("/logout", (req, res) => {
 });
 app.get("/error404", (req, res) => {
     res.status(200).render("error404");
+
+});
+app.get('/visualizar', (req, res) => {
+    res.status(200).render("visualizarPost");
+    
+});
+
+app.get("/kinesiologia", (req, res) => {
+    res.status(200).render("kinesiologia");
+    
+});
+app.get("/saludMental", (req, res) => {
+    res.status(200).render("saludmental");
+    
+});
+app.get("/neumonologia", (req, res) => {
+    res.status(200).render("neumonologia");
 });
 
 app.get('/seccionAdmin', (req, res) => {
@@ -162,22 +179,6 @@ app.post("/ChangePassword", (req, res) => {
 
 app.get("/*", (req, res) => {
     res.status(200).render("error404");
-    
-});
-app.get("/visualizar", (req, res) => {
-    res.status(200).render("vizualizarPost");
-    
-});
-app.get("/kinesiologia", (req, res) => {
-    res.status(200).render("kinesiologia");
-    
-});
-app.get("/saludMental", (req, res) => {
-    res.status(200).render("saludmental");
-    
-});
-app.get("/neumonoligia", (req, res) => {
-    res.status(200).render("neumonologia");
     
 });
 
