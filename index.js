@@ -8,8 +8,10 @@ const cors = require("cors");
 const session = require("cookie-session");
 //mongoose
 
+
 const mongoose = require("mongoose");
 const Admin = require("./models/myModel");
+const PostModel = require("./models/postModel");
 // const PostModel = require("./models/postModel");
 
 //hash
@@ -17,6 +19,7 @@ const bcrypt = require("bcrypt");
 //multer
 //const multer = require("multer");
 //const upload = multer({ dest: "images/upload/" });
+
 
 //variables globales para el logeo y los sweetsalert
 global.isLogin = 0;
@@ -123,42 +126,79 @@ app.get("/error404", (req, res) => {
     res.status(200).render("error404");
 });
 
+app.get('/seccionAdmin', (req, res) => {
+  res.status(200).render("edicionPosteos", { data: PostModel.find() });
+    res.status(200).render("edicionPosteos", { data: PostModel.find() });
+});
+
+
+app.get("/config", (req, res) => {
+    res.status(200).render("config");
+});
+app.get("/subirPost", (req, res) => {
+    res.status(200).render("postear2");
+});
+
+app.get("/ChangePassword", (req, res) => {
+    res.status(200).render("config");
+    
+});
+app.post("/ChangePassword", (req, res) => {
+    res.status(200).render("login");
+    console.log("EMIPUTO");
+    if (login) {
+        Admin.findOneAndUpdate({ nombre: "admin" },
+            { $set: { contraseña: req.body.contraseña } }, { new: true }, function (err, doc) {
+                if (err) console.log("Error ", err);
+                console.log("Updated Doc -> ", doc);
+                res.status(200).render("login", { isLogin: isLogin, login: login });
+            });
+
+
+    }
+});
+
+
+
+app.get("/*", (req, res) => {
+    res.status(200).render("error404");
+    
+});
+app.get("/visualizar", (req, res) => {
+    res.status(200).render("vizualizarPost");
+    
+});
+app.get("/kinesiologia", (req, res) => {
+    res.status(200).render("kinesiologia");
+    
+});
+app.get("/saludMental", (req, res) => {
+    res.status(200).render("saludmental");
+    
+});
+app.get("/neumonoligia", (req, res) => {
+    res.status(200).render("neumonologia");
+    
+});
+
+
 //RUTAS
 /*
     router.route("/subirPost").get(adminController.postear2);
-    router.route("/seccionAdmin").get(adminController.seccionAdmin);
     router.route("/postear").post(adminController.subirPost);
     router.route("/edicion").get(adminController.edicion);
     router.route("/editarPosteo").get(adminController.editarPost);
-    router.route("/config").get(adminController.config);
     router.route("/ChangePassword").get(adminController.seccionAdmin).post(adminController.ChangePassword);
     router.route("/ChangeUser").get(adminController.seccionAdmin).post(adminController.ChangeUser);
     router.route("/user").get(adminController.user);
-    router.route("/visualizar").get(adminController.visualizar);
-    router.route("/kinesiologia*").get(adminController.kinesiologia);
-    router.route("/saludMental*").get(adminController.saludMental);
+    router.route("/saludMental*").get(adminController.saludMental)  ;
     router.route("/neumonologia*").get(adminController.neumonologia);
-    router.route("/*").get(adminController.error404);
     module.exports = router;
 */
 
- app.post('/subirPost', (req, res) => {
-     if (login) {
-         res.status(200).render("postPrueba", {
-             isLogin: isLogin,
-             login: login,
-         });
-     } else {
-         isLogin = 4;
-         res.redirect("/"); //Hacer vista o algo con esto
-     }
- });
 
 // // REVISARR
-//  app.get('/seccionAdmin', (req, res) => {
-// //     res.status(200).render("edicionPosteos", { data: TwoModel.find() });
-//      res.status(200).render("edicionPosteos", { data: PostModel.find() });
-//  });
+
 
 // app.get('/config', (req, res)  => {
 //     res.status(200).render("config");
