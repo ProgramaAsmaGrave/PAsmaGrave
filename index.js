@@ -74,7 +74,6 @@ mongoose
     });
 //controlador principal
 app.get("/", (req, res) => {
-    console.log("Dominio principal");
     res.status(200).render("index", { login: login, isLogin: isLogin });
 });
 
@@ -144,13 +143,12 @@ app.get("/neumonologia", (req, res) => {
 });
 
 app.get('/seccionAdmin', (req, res) => {
-   // if(login){
+    if(login){
         res.status(200).render("edicionPosteos", {data:PostModel.find()});
-    //}
-    //else{
-    //isLogin = 4
-    //res.redirect("/login"); 
-    //}
+    }
+    else{
+    res.redirect("/login"); 
+    }
 });
 
 
@@ -160,7 +158,6 @@ app.get("/config", (req, res) => {
 app.post("/ChangePassword", (req, res) => {
     res.status(200).render("login");
     if (login) {
-        console.log("ENTRO A CHANGE");
         Admin.findOneAndUpdate({ nombre: "admin" },
             { $set: { contraseña: req.body.contraseña } }, { new: true }, function (err, doc) {
                 if (err) console.log("Error ", err);
@@ -192,12 +189,8 @@ app.get("/*", (req, res) => {
     router.route("/postear").post(adminController.subirPost);
     router.route("/edicion").get(adminController.edicion);
     router.route("/editarPosteo").get(adminController.editarPost);
-    router.route("/ChangePassword").get(adminController.seccionAdmin).post(adminController.ChangePassword);
     router.route("/ChangeUser").get(adminController.seccionAdmin).post(adminController.ChangeUser);
     router.route("/user").get(adminController.user);
-    router.route("/saludMental*").get(adminController.saludMental)  ;
-    router.route("/neumonologia*").get(adminController.neumonologia);
-    module.exports = router;
 */
 
 
