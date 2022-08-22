@@ -140,7 +140,46 @@ app.get("/saludMental", (req, res) => {
 });
 app.get("/neumonologia", (req, res) => {
     res.status(200).render("neumonologia");
+    
 });
+app.get("/postear", (req, res) => {
+    if(login){
+        res.status(200).render("postPrueba", { isLogin: isLogin, login: login });
+    }
+    else{
+        isLogin = 4
+        res.redirect("/"); //Hacer vista o algo con esto
+    }
+
+
+});
+app.post("/subirpost", (req, res) => {
+        let fecha=req.body.fecha;
+        let titulo= req.body.titulo;
+        let descripcion = req.body.descripcion;
+        let imagen = req.body.imagen;
+        let enlace = req.body.enlace;
+        let tag = req.body.tag;
+        console.log(fecha);
+
+        let post = new PostModel({
+        fecha: fecha,
+        titulo: titulo,
+        descripcion: descripcion,
+        imagen: imagen,
+        enlace: enlace,
+        tags: tag,
+        });
+        post.save((err,db)=>{
+            if(err) console.error(err);
+            console.log(db);
+            })
+});
+
+
+
+
+
 
 app.get('/seccionAdmin', (req, res) => {
     if(login){
@@ -174,18 +213,13 @@ app.post("/ChangePassword", (req, res) => {
     }
 });
 
-app.get("/subirPost", (req, res) => {
-    res.status(200).render("postear2");
-});
-
-
-
-
 
 app.get("/*", (req, res) => {
     res.status(200).render("error404");
     
 });
+
+
 
 
 //RUTAS
