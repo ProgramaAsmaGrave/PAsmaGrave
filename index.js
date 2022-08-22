@@ -153,7 +153,12 @@ app.get('/seccionAdmin', (req, res) => {
 
 
 app.get("/config", (req, res) => {
-    res.status(200).render("config");
+    if(login){
+        res.status(200).render("config");
+    }
+    else{
+        res.redirect("/login");
+    }
 });
 app.post("/ChangePassword", (req, res) => {
     res.status(200).render("login");
