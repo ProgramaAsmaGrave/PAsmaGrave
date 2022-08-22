@@ -8,14 +8,11 @@ body {
     }
 }
 
-.login-box {
-    padding: 10px;
-    margin: 120px auto;
-    height: 400px;
-    width: 500px;
-}
+
 .card{
-    margin-top: 70px;
+    margin: -50px;
+    margin-top: 250px;
+    width: 500px;
     border-radius: 25px;
     
     
