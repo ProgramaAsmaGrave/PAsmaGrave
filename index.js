@@ -169,6 +169,20 @@ app.post("/ChangePassword", (req, res) => {
     }
 });
 
+app.post("/ChangeUser", (req, res) => {
+    res.status(200).render("login");
+    if (login) {
+        Admin.findOneAndUpdate({ nombre: "admin" },
+            { $set: { usuario: req.body.usuario } }, { new: true }, function (err, doc) {
+                if (err) console.log("Error ", err);
+                console.log("Updated Doc -> ", doc);
+                res.status(200).render("login", { isLogin: isLogin, login: login });
+            });
+
+
+    }
+});
+
 app.get("/subirPost", (req, res) => {
     res.status(200).render("postear2");
 });
