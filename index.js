@@ -198,77 +198,13 @@ app.get("/*", (req, res) => {
 
 
 //RUTAS
-/*
-    router.route("/subirPost").get(adminController.postear2);
-    router.route("/postear").post(adminController.subirPost);
-    router.route("/edicion").get(adminController.edicion);
-    router.route("/editarPosteo").get(adminController.editarPost);
-    router.route("/ChangeUser").get(adminController.seccionAdmin).post(adminController.ChangeUser);
-    router.route("/user").get(adminController.user);
+/* 
+    router.route("/editarPosteo").get(adroller.subirPost);
+    router.route("/edicion").get(adminContminController.editarPost);
+   
 */
 
 
-// // REVISARR
-
-
-// app.get('/config', (req, res)  => {
-//     res.status(200).render("config");
-// });
-
-// app.post('/postear', (req, res)  => {
-//     const pos = new PostModel({
-//         id: "2",
-//         fecha: new Date(req.body.fecha),
-//         titulo: req.body.titulo,
-//         descripcion: req.body.descripcion,
-//         imagen: "./public/images/databaseimg/" + req.body.image,
-//         enlace: req.body.enlace,
-//         tags: req.body.tag,
-//     });
-
-//     res.status(200).render("edicionPosteos", { data: TwoModel.find() });
-//     pos.save()
-//         .then((doc) => {
-//             console.log(doc);
-//             console.log("cargado");
-//         })
-//         .catch((err) => {
-//             console.error(err);
-//         });
-//     console.log(req.body.image);
-//     res.status(200).render("edicionPosteos", { data: PostModel.find() });
-// });
-
-//error404
-// app.get('/*', (req, res) => {
-//     res.status(200).render("error404");
-// });
-//Termina controller Admin
-
-// app.use(
-//     multer({
-//         storage: multer.diskStorage({
-//             destination: "./public/images/avatars",
-//             limits: { fileSize: 10 * 1024 * 1024 },
-//             filename: function (req, file, cb) {
-//                 cb(null, "avatar" + ".jpg");
-//             },
-//         }),
-//     }).single("file")
-// );
-
-// //Multer para carga en DataBase
-// app.use(
-//     multer({
-//         storage: multer.diskStorage({
-//             destination: "./public/images/databaseimg",
-//             limits: { fileSize: 10 * 1024 * 1024 },
-//             filename: function (req, file, cb) {
-//                 cb(null, file.fieldname);
-//             },
-//         }),
-//     }).single("image")
-// );
 
 app.post("/cargarImagen", async (req, res) => {
     res.render("config");
