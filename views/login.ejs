@@ -34,17 +34,22 @@
     </head>
     <body>
         <section class="body">
-            <%-include('fragments/navbar',{login:login})%>
 
             <div class="container">
-                <div class="login-box">
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="login-box">
+                    <div class ="card">
+                        <div class="card-body">
                     <form
                         class="row login-form col-sm-12"
                         action="/login"
                         method="post"
                     >
                         <br />
-                        <h3 class="header-title">Iniciar sesion</h3>
+                        <h3 class="header-title">Iniciar sesión</h3>
                         <div class="form-group">
                             <label for="usuario"></label>
                             <input
@@ -63,7 +68,7 @@
                                 placeholder="Ingrese contraseña"
                             />
                         </div>
-                        <div class="form-group">
+                        <div class="form-group-button">
                             <button
                                 type="submit"
                                 class="btn btn-primary btn-block"
@@ -72,6 +77,12 @@
                             </button>
                         </div>
                     </form>
+                </div>
+            </div>
+                    </div>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
                 </div>
             </div>
         </section>
