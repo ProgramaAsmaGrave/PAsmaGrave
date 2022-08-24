@@ -56,7 +56,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-const port = 3000;
+const port = 3600;
 //Corremos el servidor en el puerto seleccionado
 app.listen(port, () => {
     console.log(`Servidor corriendo en el puerto ${port} correctamente`);
@@ -140,7 +140,46 @@ app.get("/saludMental", (req, res) => {
 });
 app.get("/neumonologia", (req, res) => {
     res.status(200).render("neumonologia");
+    
 });
+app.get("/postear", (req, res) => {
+    if(login){
+        res.status(200).render("postPrueba", { isLogin: isLogin, login: login });
+    }
+    else{
+        isLogin = 4
+        res.redirect("/"); //Hacer vista o algo con esto
+    }
+
+
+});
+app.post("/subirpost", (req, res) => {
+        let fecha=req.body.fecha;
+        let titulo= req.body.titulo;
+        let descripcion = req.body.descripcion;
+        let imagen = req.body.imagen;
+        let enlace = req.body.enlace;
+        let tag = req.body.tag;
+        console.log(fecha);
+
+        let post = new PostModel({
+        fecha: fecha,
+        titulo: titulo,
+        descripcion: descripcion,
+        imagen: imagen,
+        enlace: enlace,
+        tags: tag,
+        });
+        post.save((err,db)=>{
+            if(err) console.error(err);
+            console.log(db);
+            })
+});
+
+
+
+
+
 
 app.get('/seccionAdmin', (req, res) => {
     if(login){
@@ -153,7 +192,12 @@ app.get('/seccionAdmin', (req, res) => {
 
 
 app.get("/config", (req, res) => {
-    res.status(200).render("config");
+    if(login){
+        res.status(200).render("config");
+    }
+    else{
+        res.redirect("/login");
+    }
 });
 
 app.post("/ChangeDatos", (req, res) => {
@@ -165,6 +209,7 @@ app.post("/ChangeDatos", (req, res) => {
                 console.log("Updated Doc -> ", doc);
                 res.status(200).render("login", { isLogin: isLogin, login: login });
             });
+
 
             Admin.findOneAndUpdate({ nombre: "admin" },
             { $set: { usuario: req.body.usuario } }, { new: true }, function (err, doc) {
@@ -179,6 +224,13 @@ app.post("/ChangeDatos", (req, res) => {
 
 
 
+app.get("/*", (req, res) => {
+    res.status(200).render("error404");
+    
+});
+
+
+
 app.get("/subirPost", (req, res) => {
     res.status(200).render("postear2");
 });
@@ -186,21 +238,78 @@ app.get("/subirPost", (req, res) => {
 
 
 
-
-app.get("/*", (req, res) => {
-    res.status(200).render("error404");
-    
-});
-
-
 //RUTAS
-/* 
-    router.route("/editarPosteo").get(adroller.subirPost);
-    router.route("/edicion").get(adminContminController.editarPost);
-   
+/*
+    router.route("/subirPost").get(adminController.postear2);
+    router.route("/postear").post(adminController.subirPost);
+    router.route("/edicion").get(adminController.edicion);
+    router.route("/editarPosteo").get(adminController.editarPost);
+    router.route("/ChangeUser").get(adminController.seccionAdmin).post(adminController.ChangeUser);
+    router.route("/user").get(adminController.user);
 */
 
 
+// // REVISARR
+
+
+// app.get('/config', (req, res)  => {
+//     res.status(200).render("config");
+// });
+
+// app.post('/postear', (req, res)  => {
+//     const pos = new PostModel({
+//         id: "2",
+//         fecha: new Date(req.body.fecha),
+//         titulo: req.body.titulo,
+//         descripcion: req.body.descripcion,
+//         imagen: "./public/images/databaseimg/" + req.body.image,
+//         enlace: req.body.enlace,
+//         tags: req.body.tag,
+//     });
+
+//     res.status(200).render("edicionPosteos", { data: TwoModel.find() });
+//     pos.save()
+//         .then((doc) => {
+//             console.log(doc);
+//             console.log("cargado");
+//         })
+//         .catch((err) => {
+//             console.error(err);
+//         });
+//     console.log(req.body.image);
+//     res.status(200).render("edicionPosteos", { data: PostModel.find() });
+// });
+
+//error404
+// app.get('/*', (req, res) => {
+//     res.status(200).render("error404");
+// });
+//Termina controller Admin
+
+// app.use(
+//     multer({
+//         storage: multer.diskStorage({
+//             destination: "./public/images/avatars",
+//             limits: { fileSize: 10 * 1024 * 1024 },
+//             filename: function (req, file, cb) {
+//                 cb(null, "avatar" + ".jpg");
+//             },
+//         }),
+//     }).single("file")
+// );
+
+// //Multer para carga en DataBase
+// app.use(
+//     multer({
+//         storage: multer.diskStorage({
+//             destination: "./public/images/databaseimg",
+//             limits: { fileSize: 10 * 1024 * 1024 },
+//             filename: function (req, file, cb) {
+//                 cb(null, file.fieldname);
+//             },
+//         }),
+//     }).single("image")
+// );
 
 app.post("/cargarImagen", async (req, res) => {
     res.render("config");

@@ -9,7 +9,7 @@
 
 <body>
     <script type='text/javascript'
-            src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AqcB0nGFtpJ4G_FqucZVRZrjoYOVpPxTGfHz9XCEWlZ_pLKtDCjUuYqug9wOJ8CJ' 
+            src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AqcB0nGFtpJ4G_FqucZVRZrjoYOVpPxTGfHz9XCEWlZ_pLKtDCjUuYqug9wOJ8CJ' 
             async defer></script>
     
     <script type='text/javascript'>
@@ -22,8 +22,7 @@
         let center = map.getCenter();
 
         let pin = new Microsoft.Maps.Pushpin(center, {
-            icon: 'images/marker.png',
-            anchor: new Microsoft.Maps.Point(5,86)
+            icon: 'images/LOGO.png',
         });
 
         map.entities.push(pin);
