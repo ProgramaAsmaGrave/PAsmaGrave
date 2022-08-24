@@ -155,7 +155,8 @@ app.get('/seccionAdmin', (req, res) => {
 app.get("/config", (req, res) => {
     res.status(200).render("config");
 });
-app.post("/ChangePassword", (req, res) => {
+
+app.post("/ChangeDatos", (req, res) => {
     res.status(200).render("login");
     if (login) {
         Admin.findOneAndUpdate({ nombre: "admin" },
@@ -165,14 +166,7 @@ app.post("/ChangePassword", (req, res) => {
                 res.status(200).render("login", { isLogin: isLogin, login: login });
             });
 
-
-    }
-});
-
-app.post("/ChangeUser", (req, res) => {
-    res.status(200).render("login");
-    if (login) {
-        Admin.findOneAndUpdate({ nombre: "admin" },
+            Admin.findOneAndUpdate({ nombre: "admin" },
             { $set: { usuario: req.body.usuario } }, { new: true }, function (err, doc) {
                 if (err) console.log("Error ", err);
                 console.log("Updated Doc -> ", doc);
@@ -182,6 +176,8 @@ app.post("/ChangeUser", (req, res) => {
 
     }
 });
+
+
 
 app.get("/subirPost", (req, res) => {
     res.status(200).render("postear2");
