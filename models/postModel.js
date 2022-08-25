@@ -7,7 +7,7 @@ const validator = require("validator");
 const Post = new mongoose.Schema({
     id: {
         type: Number,
-        maxlength: 1000,
+        maxlength: 100000,
     },
     fecha: {
         type: String,
@@ -25,7 +25,6 @@ const Post = new mongoose.Schema({
         type: String,
         required: [true, "Tu post debe tener una descripcion"],
         maxlength: 10000,
-        unique: true,
         trim: true,
     },
     imagen: {

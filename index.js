@@ -24,6 +24,7 @@ const bcrypt = require("bcrypt");
 //variables globales para el logeo y los sweetsalert
 global.isLogin = 0;
 global.login = false;
+global.idPosts= 0;
 
 // const msg = new Admin({
 //     nombre: "admin",
@@ -154,26 +155,32 @@ app.get("/postear", (req, res) => {
 
 });
 app.post("/subirpost", (req, res) => {
+        PostModel.findOne().sort({id: -1}).exec(function(err, post) {
+            console.log(post);
+            idPosts=post+1;
+        });
         let fecha=req.body.fecha;
         let titulo= req.body.titulo;
         let descripcion = req.body.descripcion;
         let imagen = req.body.imagen;
         let enlace = req.body.enlace;
         let tag = req.body.tag;
-        console.log(fecha);
 
         let post = new PostModel({
+        id:idPosts,
         fecha: fecha,
         titulo: titulo,
         descripcion: descripcion,
         imagen: imagen,
         enlace: enlace,
         tags: tag,
-        });
+        });  
         post.save((err,db)=>{
             if(err) console.error(err);
             console.log(db);
+            idPosts=idPosts+1;
             })
+            
 });
 
 
@@ -184,6 +191,7 @@ app.post("/subirpost", (req, res) => {
 app.get('/seccionAdmin', (req, res) => {
     if(login){
         res.status(200).render("edicionPosteos", {data:PostModel.find()});
+        
     }
     else{
     res.redirect("/login"); 
@@ -204,7 +212,7 @@ app.post("/ChangeDatos", (req, res) => {
     res.status(200).render("login");
     if (login) {
         Admin.findOneAndUpdate({ nombre: "admin" },
-            { $set: { contraseña: req.body.contraseña } }, { new: true }, function (err, doc) {
+{ $set: { contraseña: req.body.contraseña } }, { new: true }, function (err, doc) {
                 if (err) console.log("Error ", err);
                 console.log("Updated Doc -> ", doc);
                 res.status(200).render("login", { isLogin: isLogin, login: login });
