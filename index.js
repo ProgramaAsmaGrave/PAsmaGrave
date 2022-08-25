@@ -207,7 +207,8 @@ app.get("/config", (req, res) => {
         res.redirect("/login");
     }
 });
-app.post("/ChangePassword", (req, res) => {
+
+app.post("/ChangeDatos", (req, res) => {
     res.status(200).render("login");
     if (login) {
         Admin.findOneAndUpdate({ nombre: "admin" },
@@ -218,13 +219,28 @@ app.post("/ChangePassword", (req, res) => {
             });
 
 
+            Admin.findOneAndUpdate({ nombre: "admin" },
+            { $set: { usuario: req.body.usuario } }, { new: true }, function (err, doc) {
+                if (err) console.log("Error ", err);
+                console.log("Updated Doc -> ", doc);
+                res.status(200).render("login", { isLogin: isLogin, login: login });
+            });
+
+
     }
 });
+
 
 
 app.get("/*", (req, res) => {
     res.status(200).render("error404");
     
+});
+
+
+
+app.get("/subirPost", (req, res) => {
+    res.status(200).render("postear2");
 });
 
 
