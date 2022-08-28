@@ -25,6 +25,7 @@ const Post = new mongoose.Schema({
         type: String,
         required: [true, "Tu post debe tener una descripcion"],
         maxlength: 10000,
+        unique: false,
         trim: true,
     },
     imagen: {
