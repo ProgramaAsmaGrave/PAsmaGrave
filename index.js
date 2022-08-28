@@ -180,9 +180,7 @@ app.post("/subirpost", (req, res) => {
                 idPosts=post.id+1;
             });
             })
-            
-            
-            //res.status(200).render("edicionPosteos", {data:PostModel.find()});
+            res.status(200).render("edicionPosteos", {data:PostModel.find()});
             
 });
 
