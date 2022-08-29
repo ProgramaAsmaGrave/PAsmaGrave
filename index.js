@@ -4,53 +4,41 @@ const path = require("path");
 const morgan = require("morgan");
 const cloudinary = require("cloudinary").v2;
 const cors = require("cors");
-//const moment = require("moment");
 const session = require("cookie-session");
-//mongoose
 
-
+//Base de Datos
 const mongoose = require("mongoose");
 const Admin = require("./models/myModel");
 const PostModel = require("./models/postModel");
-// const PostModel = require("./models/postModel");
 
 //hash
 const bcrypt = require("bcrypt");
 const { stringify } = require("querystring");
-//multer
-//const multer = require("multer");
-//const upload = multer({ dest: "images/upload/" });
-
 
 //variables globales para el logeo y los sweetsalert
 global.isLogin = 0;
 global.login = false;
 global.idPosts= 1;
 
-// const msg = new Admin({
-//     nombre: "admin",
-//     apellido: "1",
-//     usuario: "Admin1",
-//     contraseña: "administrador",
-//     avatar: "...",
-//     email: "adminhospital@gmail.com",
-// });
 
+//vistas
 app.set("view engine", "ejs");
 //Defino la localización de mis vistas
 app.set("views", path.join(__dirname, "views"));
+
 
 app.use(cors());
 //Middlewares
 app.use(
     session({
-        //Usuage
         secret: "keyboard cat",
         resave: false,
         saveUninitialized: true,
         cookie: { secure: true },
     })
 );
+
+
 app.use(morgan("dev"));
 //Middleware para poder obtener data de los requests con BodyParser
 app.use(express.json());
@@ -92,18 +80,21 @@ app.post("/login", (req, res) => {
                 bcrypt.hashSync(docs[0].contraseña, 5),
                 (err, resul) => {
                     console.log(docs[0].contraseña);
+
                     if (err) throw err;
+
                     if (resul) {
+
                         res.session = true;
                         login = res.session;
                         isLogin = 1;
                         res.status(200).render("index", { login: login });
+
                     } else {
+
                         isLogin = 2;
-                        res.status(200).render("login", {
-                            isLogin: isLogin,
-                            login: login,
-                        });
+                        res.status(200).render("login", {isLogin: isLogin,login: login,});
+
                     }
                 }
             );
@@ -113,6 +104,7 @@ app.post("/login", (req, res) => {
         res.status(200).render("login", { isLogin: isLogin, login: login });
     }
 });
+
 app.get('/seccionAdmin', (req, res) => {
     if(login){
         res.status(200).render("edicionPosteos", {data:PostModel.find()});
@@ -120,14 +112,15 @@ app.get('/seccionAdmin', (req, res) => {
         
     }
     else{
-        res.status(200).render("login", { isLogin: isLogin, login: login });
+        res.redirect("/login");
     }
 });
+
 app.get("/logout", (req, res) => {
     if (login) {
-        res.redirect("/");
         req.session.destroy();
         login = false;
+        res.redirect("/");
     } else {
         res.redirect("/");
     }
