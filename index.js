@@ -86,7 +86,7 @@ app.post("/login", (req, res) => {
                     if (resul) {
 
                         res.session = true;
-                        login = res.session;
+                        login = true;
                         isLogin = 1;
                         res.status(200).render("index", { login: login });
 
