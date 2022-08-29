@@ -116,6 +116,7 @@ app.post("/login", (req, res) => {
 app.get('/seccionAdmin', (req, res) => {
     if(login){
         res.status(200).render("edicionPosteos", {data:PostModel.find()});
+        console.log("log true");
         
     }
     else{
