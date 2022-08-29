@@ -73,12 +73,11 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-    if (req.body.usuario == "Doctor") {
         Admin.find({ usuario: req.body.usuario }, (err, docs) => {
-            bcrypt.compare(
-                req.body.contraseña,
-                bcrypt.hashSync(docs[0].contraseña, 5),
-                (err, resul) => {
+            if(req.body.usuario==docs[0].usuario){
+
+            bcrypt.compare(req.body.contraseña,bcrypt.hashSync(docs[0].contraseña, 5),(err, resul) => {
+
                     console.log(docs[0].contraseña);
 
                     if (err) throw err;
@@ -88,7 +87,7 @@ app.post("/login", (req, res) => {
                         res.session = true;
                         login = res.session;
                         isLogin = 1;
-                        res.status(200).render("edicionPosteos");
+                        res.status(200).render("edicionPosteos", {data:PostModel.find()});
 
                     } else {
 
@@ -96,18 +95,19 @@ app.post("/login", (req, res) => {
                         res.status(200).render("login", {isLogin: isLogin,login: login,});
 
                     }
-                }
-            );
-        });
-    } else {
-        isLogin = 3;
-        res.status(200).render("login", { isLogin: isLogin, login: login });
-    }
+                });
+            }
+            else {
+                isLogin = 3;
+                res.status(200).render("login", { isLogin: isLogin, login: login });
+            }
+            
+        }); 
 });
 
 app.get('/seccionAdmin', (req, res) => {
     if(login){
-        res.status(200).render("edicionPosteos", {data:PostModel.find()});
+        
 
         
     }
@@ -118,8 +118,8 @@ app.get('/seccionAdmin', (req, res) => {
 
 app.get("/logout", (req, res) => {
     if (login) {
-        req.session.destroy();
         login = false;
+        req.session.destroy();   
         res.redirect("/");
     } else {
         res.redirect("/");
