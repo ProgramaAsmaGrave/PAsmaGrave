@@ -16,6 +16,7 @@ const PostModel = require("./models/postModel");
 
 //hash
 const bcrypt = require("bcrypt");
+const { stringify } = require("querystring");
 //multer
 //const multer = require("multer");
 //const upload = multer({ dest: "images/upload/" });
@@ -24,6 +25,7 @@ const bcrypt = require("bcrypt");
 //variables globales para el logeo y los sweetsalert
 global.isLogin = 0;
 global.login = false;
+global.idPosts= 1;
 
 // const msg = new Admin({
 //     nombre: "admin",
@@ -111,7 +113,16 @@ app.post("/login", (req, res) => {
         res.status(200).render("login", { isLogin: isLogin, login: login });
     }
 });
-
+app.get('/seccionAdmin', (req, res) => {
+    if(login){
+        res.status(200).render("edicionPosteos", {data:PostModel.find()});
+        console.log("log true");
+        
+    }
+    else{
+        res.status(200).render("edicionPosteos", {data:PostModel.find()});
+    }
+});
 app.get("/logout", (req, res) => {
     if (login) {
         res.redirect("/");
@@ -160,35 +171,28 @@ app.post("/subirpost", (req, res) => {
         let imagen = req.body.imagen;
         let enlace = req.body.enlace;
         let tag = req.body.tag;
-        console.log(fecha);
 
         let post = new PostModel({
+        id:idPosts,
         fecha: fecha,
         titulo: titulo,
         descripcion: descripcion,
         imagen: imagen,
         enlace: enlace,
         tags: tag,
-        });
+        });  
         post.save((err,db)=>{
             if(err) console.error(err);
-            console.log(db);
+            console.log("se guardo un posteo");
+            PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
+            console.log("Ultimo Id:"+post.id.toString());
+                idPosts=post.id+1;
+            });
             })
+            res.status(200).render("edicionPosteos", {data:PostModel.find()});
+            
 });
 
-
-
-
-
-
-app.get('/seccionAdmin', (req, res) => {
-    if(login){
-        res.status(200).render("edicionPosteos", {data:PostModel.find()});
-    }
-    else{
-    res.redirect("/login"); 
-    }
-});
 
 
 app.get("/config", (req, res) => {
@@ -204,7 +208,7 @@ app.post("/ChangeDatos", (req, res) => {
     res.status(200).render("login");
     if (login) {
         Admin.findOneAndUpdate({ nombre: "admin" },
-            { $set: { contraseña: req.body.contraseña } }, { new: true }, function (err, doc) {
+{ $set: { contraseña: req.body.contraseña } }, { new: true }, function (err, doc) {
                 if (err) console.log("Error ", err);
                 console.log("Updated Doc -> ", doc);
                 res.status(200).render("login", { isLogin: isLogin, login: login });
