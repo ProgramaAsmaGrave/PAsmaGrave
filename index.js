@@ -115,11 +115,11 @@ app.post("/login", (req, res) => {
 });
 app.get('/seccionAdmin', (req, res) => {
     if(login){
-        res.status(200).render("edicionPosteos");
+        res.status(200).render("edicionPosteos", {data:PostModel.find()});
         
     }
     else{
-        res.status(200).render("edicionPosteos");
+        res.status(200).render("edicionPosteos", {data:PostModel.find()});
     }
 });
 app.get("/logout", (req, res) => {
@@ -188,7 +188,7 @@ app.post("/subirpost", (req, res) => {
                 idPosts=post.id+1;
             });
             })
-            res.status(200).render("edicionPosteos");
+            res.status(200).render("edicionPosteos", {data:PostModel.find()});
             
 });
 
