@@ -119,7 +119,7 @@ app.get('/seccionAdmin', (req, res) => {
         
     }
     else{
-    res.redirect("/login"); 
+        res.status(200).render("edicionPosteos");
     }
 });
 app.get("/logout", (req, res) => {
