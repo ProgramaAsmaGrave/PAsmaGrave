@@ -113,7 +113,15 @@ app.post("/login", (req, res) => {
         res.status(200).render("login", { isLogin: isLogin, login: login });
     }
 });
-
+app.get('/seccionAdmin', (req, res) => {
+    if(login){
+        res.status(200).render("edicionPosteos", {data:PostModel.find()});
+        
+    }
+    else{
+    res.redirect("/login"); 
+    }
+});
 app.get("/logout", (req, res) => {
     if (login) {
         res.redirect("/");
@@ -184,20 +192,6 @@ app.post("/subirpost", (req, res) => {
             
 });
 
-
-
-
-
-
-app.get('/seccionAdmin', (req, res) => {
-    if(login){
-        res.status(200).render("edicionPosteos", {data:PostModel.find()});
-        
-    }
-    else{
-    res.redirect("/login"); 
-    }
-});
 
 
 app.get("/config", (req, res) => {
