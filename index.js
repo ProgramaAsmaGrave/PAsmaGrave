@@ -86,9 +86,9 @@ app.post("/login", (req, res) => {
                     if (resul) {
 
                         res.session = true;
-                        login = true;
+                        login = res.session;
                         isLogin = 1;
-                        res.status(200).render("index", { login: login });
+                        res.status(200).render("edicionPosteos", { login: login });
 
                     } else {
 
