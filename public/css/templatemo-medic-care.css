@@ -680,6 +680,10 @@ strong {
     transform: translate(-50%, -50%);
 }
 
+.delay-carousel{
+    transition-delay: 1s
+}
+
 .reviews-carousel .owl-nav span {
     width: 550px;
     left: 50px;
