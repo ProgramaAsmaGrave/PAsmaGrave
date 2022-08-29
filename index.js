@@ -115,7 +115,7 @@ app.post("/login", (req, res) => {
 });
 app.get('/seccionAdmin', (req, res) => {
     if(login){
-        res.status(200).render("edicionPosteos", {data:PostModel.find()});
+        res.status(200).render("edicionPosteos");
         
     }
     else{
@@ -188,7 +188,7 @@ app.post("/subirpost", (req, res) => {
                 idPosts=post.id+1;
             });
             })
-            res.status(200).render("edicionPosteos", {data:PostModel.find()});
+            res.status(200).render("edicionPosteos");
             
 });
 
