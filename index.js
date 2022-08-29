@@ -58,7 +58,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-const port = 3900;
+const port = 3700;
 //Corremos el servidor en el puerto seleccionado
 app.listen(port, () => {
     console.log(`Servidor corriendo en el puerto ${port} correctamente`);
