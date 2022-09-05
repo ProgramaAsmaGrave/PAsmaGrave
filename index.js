@@ -18,8 +18,12 @@ const { stringify } = require("querystring");
 //variables globales para el logeo y los sweetsalert
 global.isLogin = 0;
 global.login = false;
-global.idPosts= 1;
+global.idPosts;
 
+PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
+    console.log("Ultimo Id:"+post.id.toString());
+    idPosts=post.id.toString;
+});
 
 //vistas
 app.set("view engine", "ejs");
@@ -167,6 +171,10 @@ app.get("/postear", (req, res) => {
 
 });
 app.post("/subirpost", (req, res) => {
+        PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
+            console.log("Ultimo Id:"+post.id.toString());
+            idPosts=post.id+1;
+        });
         let fecha=req.body.fecha;
         let titulo= req.body.titulo;
         let descripcion = req.body.descripcion;
@@ -186,10 +194,6 @@ app.post("/subirpost", (req, res) => {
         post.save((err,db)=>{
             if(err) console.error(err);
             console.log("se guardo un posteo");
-            PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
-            console.log("Ultimo Id:"+post.id.toString());
-                idPosts=post.id+1;
-            });
             })
             res.status(200).render("edicionPosteos", {data:PostModel.find()});
             
@@ -227,11 +231,6 @@ app.get("/*", (req, res) => {
     
 });
 
-
-
-app.get("/subirPost", (req, res) => {
-    res.status(200).render("postear2");
-});
 
 
 
