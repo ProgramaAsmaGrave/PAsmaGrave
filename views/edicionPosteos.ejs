@@ -69,6 +69,47 @@
 
         
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+        function cartel(encontrar) {
+            const btn = document.getElementById("eliminar")
+            btn.addEventListener('click', () => {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        PostModel.findOneAndDelete({id: encontrar}, function (err, docs) {
+                        if (err) {
+                            console.log(err)
+                        }
+                        else {
+                            console.log("Deleted post : ", docs);
+                        }
+                    });
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+            })
+        }
+
+                function editar(){
+                    const btnE = document.getElementById("editar")
+            btnE.addEventListener('click', () => {
+                res.render("editPosteo");
+            })
+                   
+                }
+
+                </script>
         <script src="js/edicionPosteos.js"></script>
 
 
