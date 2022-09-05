@@ -93,7 +93,7 @@ app.post("/login", (req, res) => {
                             console.log("Ultimo Id:"+post.id.toString());
                             idPosts=++post.id;
                         });
-                        res.status(200).render("edicionPosteos", {data:PostModel.find()});
+                        res.status(200).render("index", { login: login, isLogin: isLogin });
 
                     } else {
 
