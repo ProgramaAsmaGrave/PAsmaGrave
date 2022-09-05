@@ -31,6 +31,7 @@ app.use(cors());
 //Middlewares
 app.use(
     session({
+        login: false,
         secret: "keyboard cat",
         resave: false,
         saveUninitialized: true,
@@ -85,8 +86,9 @@ app.post("/login", (req, res) => {
 
                     if (resul) {
 
-                        res.session = true;
-                        login = res.session;
+                        req.session.login = true;
+                        console.log("sesion= "+ req.session.login)
+                        login = req.session.login;
                         isLogin = 1;
                         res.status(200).render("edicionPosteos", {data:PostModel.find()});
 
@@ -107,9 +109,15 @@ app.post("/login", (req, res) => {
 });
 
 app.get('/seccionAdmin', (req, res) => {
-    if(login){
+    if(req.session.login)
         res.status(200).render("edicionPosteos", {data:PostModel.find()});
-
+    else{
+        res.redirect("/login");
+    }
+});
+app.get("/config", (req, res) => {
+    if(req.session.login){
+        res.status(200).render("config");
     }
     else{
         res.redirect("/login");
@@ -117,9 +125,10 @@ app.get('/seccionAdmin', (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
-    if (login) {
+    if (req.session.login) {
         login = false;
-        req.session.destroy();   
+        req.session.login =false; 
+        console.log("session sasa"+req.session.login);  
         res.redirect("/");
     } else {
         res.redirect("/");
@@ -147,7 +156,7 @@ app.get("/neumonologia", (req, res) => {
     
 });
 app.get("/postear", (req, res) => {
-    if(login){
+    if(req.session.login){
         res.status(200).render("postPrueba", { isLogin: isLogin, login: login });
     }
     else{
@@ -188,18 +197,10 @@ app.post("/subirpost", (req, res) => {
 
 
 
-app.get("/config", (req, res) => {
-    if(login){
-        res.status(200).render("config");
-    }
-    else{
-        res.redirect("/login");
-    }
-});
 
 app.post("/ChangeDatos", (req, res) => {
     res.status(200).render("login");
-    if (login) {
+    if (req.session.login) {
         Admin.findOneAndUpdate({ nombre: "admin" },
 { $set: { contraseña: req.body.contraseña } }, { new: true }, function (err, doc) {
                 if (err) console.log("Error ", err);
