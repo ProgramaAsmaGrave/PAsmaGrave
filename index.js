@@ -18,12 +18,7 @@ const { stringify } = require("querystring");
 //variables globales para el logeo y los sweetsalert
 global.isLogin = 0;
 global.login = false;
-global.idPosts;
-
-PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
-    console.log("Ultimo Id:"+post.id.toString());
-    idPosts=post.id.toString;
-});
+global.idPosts=1;
 
 //vistas
 app.set("view engine", "ejs");
@@ -94,6 +89,10 @@ app.post("/login", (req, res) => {
                         console.log("sesion= "+ req.session.login)
                         login = req.session.login;
                         isLogin = 1;
+                        PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
+                            console.log("Ultimo Id:"+post.id.toString());
+                            idPosts=++post.id;
+                        });
                         res.status(200).render("edicionPosteos", {data:PostModel.find()});
 
                     } else {
@@ -171,10 +170,10 @@ app.get("/postear", (req, res) => {
 
 });
 app.post("/subirpost", (req, res) => {
-        PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
-            console.log("Ultimo Id:"+post.id.toString());
-            idPosts=post.id+1;
-        });
+    PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
+        console.log("Ultimo Id:"+post.id.toString());
+        idPosts=++post.id;
+    });
         let fecha=req.body.fecha;
         let titulo= req.body.titulo;
         let descripcion = req.body.descripcion;
@@ -195,7 +194,7 @@ app.post("/subirpost", (req, res) => {
             if(err) console.error(err);
             console.log("se guardo un posteo");
             })
-            res.status(200).render("edicionPosteos", {data:PostModel.find()});
+            res.status(200).render("index", { login: login, isLogin: isLogin });
             
 });
 
