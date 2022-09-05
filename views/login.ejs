@@ -87,35 +87,38 @@
         </section>
 
         <% if(isLogin == 2){ %>
-        <script>
-        Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                text: 'Contraseña y/o usuarios incorrectos',
-                showConfirmButton: false,
-                timer: 1500,
-                width :300,
-                padding: 0.5  
-            })
-            </script>
-        <% } %>
-        <% if(isLogin == 3){ %>
             <script>
-        Swal.fire({
-                position: 'top-end',
-                icon: 'warning',
-                text: 'Ingrese los datos requeridos',
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 1500,
-                width :300,
-                padding: 0.5
-              })
-
-
-            </script>
- 
-         <% } %>
-            
+                timer: 3000,
+                timerProgressBar: true,
+                showCloseButton: true
+              });
         
-    </body>
-</html>
+              Toast.fire({
+                icon: "error",
+                title: "Usuario y/o Contraseña incorrectos",
+              });
+            </script>
+            <% } %> <% if(isLogin == 3){ %>
+            <script>
+            const Toast2 = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                showCloseButton: true
+              });
+        
+              Toast.fire({
+                icon: "error",
+                title: "Ingresa los datos requeridos",
+              });
+            </script>
+        
+            <% } %>
+          </body>
+        </html>
