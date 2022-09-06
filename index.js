@@ -172,9 +172,9 @@ app.post("/subirpost", (req, res) => {
         PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
             console.log("Ultimo Id:"+post.id.toString());
             idPosts=post.id;
-        });
         
-        let post = new PostModel({
+
+        let posteo = new PostModel({
         id:idPosts+1,
         fecha: fecha,
         titulo: titulo,
@@ -183,13 +183,13 @@ app.post("/subirpost", (req, res) => {
         enlace: enlace,
         tags: tag,
         });  
-        post.save((err,db)=>{
+        posteo.save((err,db)=>{
             if(err) console.error(err);
             console.log(db);
             isLogin=7;
             res.status(200).render("index", { login: req.session.login, isLogin: isLogin });
             })
-            
+        });
             
 });
 
