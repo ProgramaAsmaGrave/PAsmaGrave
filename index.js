@@ -75,33 +75,27 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-        Admin.find({ usuario: req.body.usuario }, (err, docs) => {
-            if(req.body.usuario==docs[0].usuario){
-
+    Admin.find({ usuario: req.body.usuario }, (err, docs) => {
+        if(req.body.usuario != "Doctor"){
+            isLogin = 2;
+            res.status(200).render("login", { isLogin: isLogin, login: req.session.login });
+        }
+        else{
             bcrypt.compare(req.body.contraseña,bcrypt.hashSync(docs[0].contraseña, 5),(err, resul) => {
+                if (err) throw err;
 
-                    if (err) throw err;
-
-                    if (resul) {
-                        req.session.login = true;
-                        login = req.session.login;
-                        isLogin = 5;                      
-                        res.status(200).render("index", { login: req.session.login, isLogin: isLogin });
-
-                    } else {
-
-                        isLogin = 2;
-                        res.status(200).render("login", {isLogin: isLogin,login: req.session.login});
-
-                    }
-                });
-            }
-            else {
-                isLogin = 3;
-                res.status(200).render("login", { isLogin: isLogin, login: req.session.login });
-            }
-            
-        }); 
+                if (resul) {
+                    req.session.login = true;
+                    isLogin = 5;                      
+                    res.status(200).render("index", { login: req.session.login, isLogin: isLogin });
+                }     
+                else {
+                    isLogin = 2;
+                    res.status(200).render("login", {isLogin: isLogin,login: req.session.login});
+                }
+            });
+        }
+    }); 
 });
 
 app.get('/seccionAdmin', (req, res) => {
@@ -135,8 +129,7 @@ app.get("/postear", (req, res) => {
 
 app.get("/logout", (req, res) => {
     if (req.session.login) {
-        req.session.login =false; 
-        console.log("session sasa"+req.session.login);  
+        req.session.login =false;  
         res.redirect("/");
     } else {
         res.redirect("/");

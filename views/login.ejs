@@ -48,7 +48,7 @@
                     >
                         <br />
                         <h3 class="header-title" style="text-align:center ;">Iniciar sesión</h3>
-                        <div class="form-group">
+                        <div class="form-group needs-validation" novalidate>
                             <label for="usuario"></label>
                             <input
                                 name="usuario"
@@ -56,6 +56,7 @@
                                 style="border-color:cadetblue;"
                                 class="form-control"
                                 placeholder="Ingrese usuario"
+                                required
                             />
                         </div>
                         <div class="form-group">
@@ -113,7 +114,7 @@
                 showCloseButton: true
               });
         
-              Toast.fire({
+              Toast2.fire({
                 icon: "error",
                 title: "Ingresa los datos requeridos",
               });
