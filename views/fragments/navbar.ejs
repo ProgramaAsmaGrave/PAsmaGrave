@@ -12,75 +12,65 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-lg">
         <div class="container">
             <img src="images/logo.png" width="50" height="50" style="margin-right:100px"/>
-            <a class="navbar-brand mx-auto d-lg-none" href="#hero">
+            <a class="navbar-brand mx-auto d-lg-none" href="#">
                 Programa de Asma Grave
                 <strong class="d-block">Hospital Pediátrico del Niño Jesús</strong>
             </a>
-            
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-            
-                  
-            <div class="navbar-collapse collapse"id="navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+                <div class="collapse navbar-collapse"id="navbarNav">
                 
-                <ul class="navbar-nav mx-auto">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     
-                    <li class="nav-item active">
+                        <li class="nav-item active">
                         <a class="nav-link" href="/">Inicio</a>
-                    </li>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">Sobre</a>
-                    </li>            
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">Sobre</a>
+                        </li>            
 
-                    <a class="animate__animated animate__backInDown navbar-brand d-none d-lg-block">
-                        Programa de Asma Grave<strong class="d-block subtitule " style="color:white">Hospital Pediátrico del Niño Jesús</strong>
-                    </a>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/seccionAdmin"
-                            >Admin</a
-                        >
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#contact"
-                            >Contacto</a
-                        >
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Divisiones
+                        <a class="animate__animated animate__backInDown navbar-brand d-none d-lg-block">
+                            Programa de Asma Grave<strong class="d-block subtitule " style="color:white">Hospital Pediátrico del Niño Jesús</strong>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                          <a class="dropdown-item" href="/kinesiologia">Kinesiologia</a>
-                          <a class="dropdown-item" href="/saludmental">Saludmental</a>
-                          <a class="dropdown-item" href="/neumonologia">Neumonologia</a>
-                        </div>
-                      </li>
-                  
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/seccionAdmin">Admin</a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#contact">Contacto</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Divisiones
+                            </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                                    <a class="dropdown-item" href="/kinesiologia">Kinesiologia</a>
+                                    <a class="dropdown-item" href="/saludmental">Saludmental</a>
+                                    <a class="dropdown-item" href="/neumonologia">Neumonologia</a>
+                                </div>
+                        </li>
+                
+
                     <% if(login){ %>
                         <li class="nav-item">
                             <button type="button" class="btn btn-outline-primary botoncerrarsesion"><a href="/logout"
                                 >Cerrar sesion</a
                             ></button>
-                    </li>
-                 <% } else{ %>
-                <li class="nav-item">
-                    <button type="button" class="btn btn-outline-primary botoninicio"><a href="/login"
-                        >Ingresar</a
-                    ></button>
-                    
-                </li>
-                <%}%>
-                
+                        </li>
+                    <%}else{ %>
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-outline-primary botoninicio"><a href="/login"
+                                >Ingresar</a
+                            ></button>
+                        </li>
+                    <%}%>
                 </ul>
-            
-        </div>
-            
-        
-    </nav>
-    
-</body>
+            </div>
+        </nav>
+    </body>
 </html>
