@@ -172,7 +172,7 @@ app.get("/postear", (req, res) => {
 app.post("/subirpost", (req, res) => {
     PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
         console.log("Ultimo Id:"+post.id.toString());
-        idPosts=++post.id;
+        idPosts=idPosts+post.id;
     });
         let fecha=req.body.fecha;
         let titulo= req.body.titulo;
