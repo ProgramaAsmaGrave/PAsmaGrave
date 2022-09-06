@@ -33,7 +33,7 @@ app.use(
         login: false,
         secret: "keyboard cat",
         resave: false,
-        saveUninitialized: true,
+        saveUninitialized: false,
         cookie: { secure: true },
     })
 );
@@ -65,12 +65,13 @@ mongoose
     });
 //controlador principal
 app.get("/", (req, res) => {
-    res.status(200).render("index", { login: login, isLogin: isLogin });
+    isLogin= 0;
+    res.status(200).render("index", { login: req.session.login, isLogin: isLogin });
 });
 
 //Controlador de Admin
 app.get("/login", (req, res) => {
-    res.status(200).render("login", { isLogin: isLogin, login: login });
+    res.status(200).render("login", { isLogin: isLogin, login: req.session.login });
 });
 
 app.post("/login", (req, res) => {
@@ -79,33 +80,25 @@ app.post("/login", (req, res) => {
 
             bcrypt.compare(req.body.contraseña,bcrypt.hashSync(docs[0].contraseña, 5),(err, resul) => {
 
-                    console.log(docs[0].contraseña);
-
                     if (err) throw err;
 
                     if (resul) {
-
                         req.session.login = true;
-                        console.log("sesion= "+ req.session.login)
                         login = req.session.login;
-                        isLogin = 1;
-                        PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
-                            console.log("Ultimo Id:"+post.id.toString());
-                            idPosts=++post.id;
-                        });
-                        res.status(200).render("index", { login: login, isLogin: isLogin });
+                        isLogin = 5;                      
+                        res.status(200).render("index", { login: req.session.login, isLogin: isLogin });
 
                     } else {
 
                         isLogin = 2;
-                        res.status(200).render("login", {isLogin: isLogin,login: login,});
+                        res.status(200).render("login", {isLogin: isLogin,login: req.session.login});
 
                     }
                 });
             }
             else {
                 isLogin = 3;
-                res.status(200).render("login", { isLogin: isLogin, login: login });
+                res.status(200).render("login", { isLogin: isLogin, login: req.session.login });
             }
             
         }); 
@@ -115,7 +108,8 @@ app.get('/seccionAdmin', (req, res) => {
     if(req.session.login)
         res.status(200).render("edicionPosteos", {data:PostModel.find()});
     else{
-        res.redirect("/login");
+        isLogin = 4
+        res.status(200).render("index", {login: req.session.login,isLogin: 4});
     }
 });
 app.get("/config", (req, res) => {
@@ -123,13 +117,24 @@ app.get("/config", (req, res) => {
         res.status(200).render("config");
     }
     else{
-        res.redirect("/login");
+        isLogin = 4
+        res.status(200).render("index", {login: req.session.login,isLogin: 4});
     }
+});
+app.get("/postear", (req, res) => {
+    if(req.session.login){
+        res.status(200).render("postPrueba", { isLogin: isLogin, login: req.session.login });
+    }
+    else{
+        isLogin = 4
+        res.status(200).render("index", {login: req.session.login,isLogin: 4});
+    }
+
+
 });
 
 app.get("/logout", (req, res) => {
     if (req.session.login) {
-        login = false;
         req.session.login =false; 
         console.log("session sasa"+req.session.login);  
         res.redirect("/");
@@ -158,17 +163,7 @@ app.get("/neumonologia", (req, res) => {
     res.status(200).render("neumonologia");
     
 });
-app.get("/postear", (req, res) => {
-    if(req.session.login){
-        res.status(200).render("postPrueba", { isLogin: isLogin, login: login });
-    }
-    else{
-        isLogin = 4
-        res.redirect("/"); //Hacer vista o algo con esto
-    }
 
-
-});
 app.post("/subirpost", (req, res) => {
     PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
         console.log("Ultimo Id:"+post.id.toString());
@@ -194,7 +189,7 @@ app.post("/subirpost", (req, res) => {
             if(err) console.error(err);
             console.log("se guardo un posteo");
             })
-            res.status(200).render("index", { login: login, isLogin: isLogin });
+            res.status(200).render("index", { login: req.session.login, isLogin: isLogin });
             
 });
 
@@ -208,7 +203,7 @@ app.post("/ChangeDatos", (req, res) => {
 { $set: { contraseña: req.body.contraseña } }, { new: true }, function (err, doc) {
                 if (err) console.log("Error ", err);
                 console.log("Updated Doc -> ", doc);
-                res.status(200).render("login", { isLogin: isLogin, login: login });
+                res.status(200).render("login", { isLogin: isLogin, login: req.session.login });
             });
 
 
@@ -216,7 +211,7 @@ app.post("/ChangeDatos", (req, res) => {
             { $set: { usuario: req.body.usuario } }, { new: true }, function (err, doc) {
                 if (err) console.log("Error ", err);
                 console.log("Updated Doc -> ", doc);
-                res.status(200).render("login", { isLogin: isLogin, login: login });
+                res.status(200).render("login", { isLogin: isLogin, login: req.session.login });
             });
 
 

@@ -56,9 +56,9 @@
             crossorigin="anonymous"
         ></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <% if(login){ %>
+        <% if(login && isLogin==5){ %>
         <script>
-            const Toast = Swal.mixin({
+        const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
         showConfirmButton: false,
@@ -75,7 +75,7 @@
         <%}%>
         <% if(isLogin == 4){ %>
             <script>
-               const Toast2 = Swal.mixin({
+        const Toast2 = Swal.mixin({
         toast: true,
         position: "top-end",
         showConfirmButton: false,
@@ -84,7 +84,7 @@
         showCloseButton: true
       });
 
-      Toast.fire({
+      Toast2.fire({
         icon: "error",
         title: "Solo los Administradores pueden hacer esta accion",
       });
