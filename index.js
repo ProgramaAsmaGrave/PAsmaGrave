@@ -118,6 +118,10 @@ app.get("/config", (req, res) => {
 app.get("/postear", (req, res) => {
     if(req.session.login){
         res.status(200).render("postPrueba", { isLogin: isLogin, login: req.session.login });
+        PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
+            console.log("Ultimo Id:"+post.id.toString());
+            idPosts=post.id;
+        });
     }
     else{
         isLogin = 4
@@ -158,10 +162,6 @@ app.get("/neumonologia", (req, res) => {
 });
 
 app.post("/subirpost", (req, res) => {
-    PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
-        console.log("Ultimo Id:"+post.id.toString());
-        idPosts=idPosts+post.id;
-    });
         let fecha=req.body.fecha;
         let titulo= req.body.titulo;
         let descripcion = req.body.descripcion;
@@ -170,7 +170,7 @@ app.post("/subirpost", (req, res) => {
         let tag = req.body.tag;
 
         let post = new PostModel({
-        id:idPosts,
+        id:idPosts+1,
         fecha: fecha,
         titulo: titulo,
         descripcion: descripcion,
@@ -180,9 +180,11 @@ app.post("/subirpost", (req, res) => {
         });  
         post.save((err,db)=>{
             if(err) console.error(err);
-            console.log("se guardo un posteo");
-            })
+            console.log(db);
+            isLogin=7;
             res.status(200).render("index", { login: req.session.login, isLogin: isLogin });
+            })
+            
             
 });
 

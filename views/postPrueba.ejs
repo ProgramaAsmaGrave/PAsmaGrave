@@ -14,7 +14,7 @@
         <div class="container">
             <form action="/subirpost" method="post" class="form-bonito">
                 <span class="obligatorio">* Obligatorio</span>
-                <div class="row">
+                <div class="row needs-validation" novalidate>
                     <div class="col-25">
                         <i class="fa-solid fa-comment-medical"></i>
                         <label for="titulo">Titulo</label>
@@ -26,10 +26,11 @@
                             name="titulo"
                             id="titulo"
                             placeholder="Agrega un titulo.."
+                            required
                         />
                     </div>
                 </div>
-                <div class="row">
+                <div class="row needs-validation" novalidate>
                     <div class="col-25">
                         <i class="fa-solid fa-bars"></i>
                         <label for="descripcion">Descripcion</label>
@@ -41,17 +42,18 @@
                             name="descripcion"
                             placeholder="Agrega una descripcion.."
                             style="height: 200px"
+                            required
                         ></textarea>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row needs-validation" novalidate>
                     <div class="col-25">
                         <i class="fa-regular fa-calendar-check"></i>
                         <label for="fecha">Fecha</label>
                         <span class="obligatorio">*</span>
                     </div>
                     <div class="col-75">
-                        <input type="date" id="lname" name="fecha" />
+                        <input type="date" id="lname" name="fecha" required/>
                     </div>
                 </div>
                 <div class="row input-group">
@@ -79,7 +81,7 @@
                 <span class="obligatorio"
                     >Los tags deben estar separados por una ","</span
                 >
-                <div class="row">
+                <div class="row needs-validation" novalidate>
                     <div class="col-25">
                         <i class="fa-solid fa-tag"></i>
                         <label class="letras" for="tag">Tag:</label>
@@ -91,6 +93,7 @@
                             id="tag"
                             name="tag"
                             placeholder="Agregar tags..."
+                            required
                         />
                     </div>
                 </div>

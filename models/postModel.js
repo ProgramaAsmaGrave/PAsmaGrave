@@ -38,6 +38,7 @@ const Post = new mongoose.Schema({
     tags: {
         type: String,
         lowercase: true,
+        unique: false,
         trim: true,
     },
 });

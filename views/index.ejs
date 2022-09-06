@@ -91,5 +91,23 @@
                 
             </script>
             <%}%>
+            <% if(isLogin == 7){ %>
+                <script>
+            const Toast3 = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            showCloseButton: true
+          });
+    
+          Toast3.fire({
+            icon: "info",
+            title: "Posteo Guardado con exito",
+          });
+                    
+                </script>
+                <%}%>
     </body>
 </html>
