@@ -5,20 +5,26 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>formularioPost</title>
-        <%-include('fragments/head')%>
+        
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+        <link href="css/bootstrap-icons.css" rel="stylesheet" />
+
+        <link href="css/owl.carousel.min.css" rel="stylesheet" />
+
+        <link href="css/owl.theme.default.min.css" rel="stylesheet" />
+       
         <link href="/css/formPrueba.css" rel="stylesheet" />
+        
     </head>
     <body>
         <%-include('fragments/admin', {login:login})%>
-
         <div class="container">
             <form action="/subirpost" method="post" class="form-bonito">
-                <span class="obligatorio">* Obligatorio</span>
                 <div class="row needs-validation" novalidate>
                     <div class="col-25">
                         <i class="fa-solid fa-comment-medical"></i>
                         <label for="titulo">Titulo</label>
-                        <span class="obligatorio">*</span>
                     </div>
                     <div class="col-75">
                         <input
@@ -34,7 +40,6 @@
                     <div class="col-25">
                         <i class="fa-solid fa-bars"></i>
                         <label for="descripcion">Descripcion</label>
-                        <span class="obligatorio">*</span>
                     </div>
                     <div class="col-75">
                         <textarea
@@ -85,7 +90,6 @@
                     <div class="col-25">
                         <i class="fa-solid fa-tag"></i>
                         <label class="letras" for="tag">Tag:</label>
-                        <span class="obligatorio">*</span>
                     </div>
                     <div class="col-75">
                         <input
@@ -101,15 +105,7 @@
                     <input type="submit" value="Subir" id="subirPost">
                 </div>
             </form>
-            <form action="/guardarImagen" method="post" enctype="multipart/form-data">
-                <div class="perfil-usuario-avatar">
-                    <div class="upload">
-                        <button type = "button" class = "boton-avatar">   
-                            <input type="file" name="image"  accept="image/png,image/jpeg">
-                        </button>
-                    </div>
-                    <input type="submit" value="Cargar" class="bajar"/>
-                    </form>
+        
                     
         </div>
 
