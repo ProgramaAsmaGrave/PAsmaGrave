@@ -169,6 +169,11 @@ app.post("/subirpost", (req, res) => {
         let enlace = req.body.enlace;
         let tag = req.body.tag;
 
+        PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
+            console.log("Ultimo Id:"+post.id.toString());
+            idPosts=post.id;
+        });
+        
         let post = new PostModel({
         id:idPosts+1,
         fecha: fecha,
