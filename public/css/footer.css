@@ -1,6 +1,45 @@
-.map{
-    width: 800px;
-    height: 400px;
-    margin-left: -20px;
-    padding-left: 50px;
+body{margin-top:20px;}
+.social-icon.social li a {
+    color: #adb5bd;
+    border-color: #adb5bd;
+}
+.social-icon li a {
+    color: #3c4858;
+    border: 1px solid #3c4858;
+    display: inline-block;
+    height: 32px;
+    text-align: center;
+    font-size: 15px;
+    width: 32px;
+    line-height: 27px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    position: relative;
+}
+.rounded {
+    border-radius: 5px !important;
+}
+footer {
+  position: relative;
+  padding: 50px 0;
+}
+
+footer .logo-footer {
+  font-size: 28px;
+}
+
+footer.footer-bar {
+  padding: 30px 0;
+  border-top: 1px solid #495057;
+}
+
+footer .footer-text {
+  color: #adb5bd;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+footer .footer-text:hover {
+  color: #dee2e6;
 }
