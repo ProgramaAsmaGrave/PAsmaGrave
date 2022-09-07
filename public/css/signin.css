@@ -18,10 +18,8 @@ body {
 }
 
 .card{
-    border-radius: 20px;
-    margin-top:300px;
-    margin-bottom: 300px;
-
+    border-radius: 15px;
+    margin-top:280px;
 }
 .header-title {
     font-family: url(https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap);
