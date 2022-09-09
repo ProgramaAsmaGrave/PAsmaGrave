@@ -162,6 +162,10 @@ app.get('/visualizar/:id', (req, res) => {
 app.get('/eliminarPost/:id', (req, res) => {
     var id= req.params.id;
     PostModel.find({ id:id }).remove().exec();
+    PostModel.find().sort({id: -1}).exec(function(err, post) {   
+        console.log(post);
+        res.status(200).render("edicionPosteos", {data:post});
+    });
     
 });
 
@@ -201,10 +205,15 @@ app.post("/subirpost", (req, res) => {
         tags: tag,
         });  
         posteo.save((err,db)=>{
-            if(err) console.error(err);
-            console.log(db);
+            if(err){
+            console.log(err);
+            isLogin=8;
+            res.status(200).render("index", { login: req.session.login, isLogin: isLogin });
+            } 
+            else{
             isLogin=7;
             res.status(200).render("index", { login: req.session.login, isLogin: isLogin });
+            } 
             })
         });
             

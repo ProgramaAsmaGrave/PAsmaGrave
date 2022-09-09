@@ -109,5 +109,23 @@
                     
                 </script>
                 <%}%>
+                <% if(isLogin == 8){ %>
+                  <script>
+              const Toast4 = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              showCloseButton: true
+            });
+      
+            Toast4.fire({
+              icon: "error",
+              title: "NO SE GUARDO TU POST",
+            });
+                      
+                  </script>
+                  <%}%>
     </body>
 </html>
