@@ -31,9 +31,7 @@
                                             <h6 class="card-text">Fecha: <%=data[i].fecha%></h6>
                                             <h6 class="card-text">ID: <%=data[i].id%></h6>
                                             <h6 class="card-text">Tags: <%=data[i].tags%></h6>
-                                            <button type="button" class="btn btn-primary">
-                                                Visualizar
-                                            </button>
+                                            <a type="button" href="/visualizar/<%=data[i].id%>" class="btn btn-primary">Visualizar</a>
                                             <button type="button" id="editar" onclick="editar()" class="btn btn-primary">
                                                 Editar
                                             </button>

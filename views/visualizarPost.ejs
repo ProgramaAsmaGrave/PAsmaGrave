@@ -11,7 +11,7 @@
     <title>Document</title>
 
 </head>
-
+<%-include('fragments/admin', {data:data})%>
 <body>
 
     <div class="card mb-3" style="max-width: 900px;">
@@ -22,61 +22,10 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <p class="card-text"><small class="text-muted">10-10-22</small></p>
-                    <h5 class="card-title">Titulo prueba</h5>
+                    <p class="card-text"><small class="text-muted"><%=data[0].fecha%></small></p>
+                    <h5 class="card-title"><%=data[0].titulo%></h5>
                     <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras condimentum aliquet massa at
-                        gravida.
-                        Etiam eu massa leo. Nunc faucibus elit vel ex vehicula dignissim. Curabitur congue lectus nisi,
-                        a congue
-                        risus fermentum non. Vestibulum scelerisque neque in orci luctus, non vestibulum leo ultrices.
-                        In tempus
-                        elit a aliquam ultrices. Nulla a elementum mi. Nulla vulputate lectus risus. Integer vitae
-                        mollis nisl.
-                        Vestibulum sit amet aliquam mi. Donec volutpat varius metus, sed auctor enim dapibus vel.
-
-                        Vivamus faucibus tellus nec neque convallis lobortis. Cras at molestie dolor. Nulla pharetra
-                        semper
-                        elementum. Maecenas tristique cursus blandit. Aenean malesuada suscipit erat nec pellentesque.
-                        Sed
-                        ultrices facilisis ipsum, quis laoreet sem bibendum et. Sed tempus mauris nec venenatis
-                        accumsan.
-
-                        Sed porttitor ante nisl, ut malesuada leo placerat eget. Mauris hendrerit leo tempor blandit
-                        laoreet.
-                        Duis nec lobortis massa. Proin ultrices risus lacus. Nunc quis mollis ante. Nam convallis, felis
-                        ut
-                        finibus blandit, orci arcu maximus velit, cursus blandit tortor justo ac arcu. Orci varius
-                        natoque
-                        penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras pharetra nunc nec turpis
-                        maximus, in maximus lectus convallis. Maecenas eu nisi pulvinar, scelerisque lectus sit amet,
-                        laoreet
-                        mi. Phasellus ultrices urna libero, quis molestie dolor pellentesque a. Nullam sed mattis leo,
-                        id luctus
-                        mauris. Nullam quis condimentum leo, sed rhoncus sem.
-
-                        Aenean sed neque eros. Fusce dictum euismod gravida. Sed ut nisi dictum, sollicitudin velit non,
-                        suscipit lacus. Donec rutrum neque sit amet tempus efficitur. In et nunc quis lacus tincidunt
-                        vehicula
-                        ut semper magna. Morbi a dapibus mauris, non rutrum nunc. Etiam quis luctus ipsum. Ut id tortor
-                        sed
-                        neque varius semper. Vestibulum efficitur velit orci, sed vulputate mauris vestibulum at. Proin
-                        tincidunt vehicula nulla vel iaculis. Integer dictum tristique convallis. Fusce orci quam,
-                        sagittis id
-                        nisi eu, laoreet dictum velit. Donec vulputate maximus lacus, ut venenatis felis auctor in.
-                        Vestibulum
-                        vulputate ligula enim, eget efficitur quam tempor id.
-
-                        Donec nec dignissim tellus, quis laoreet dolor. Ut vitae faucibus orci. Fusce justo nisl,
-                        venenatis
-                        fringilla auctor quis, dictum et libero. Morbi lobortis dolor pretium, convallis risus in,
-                        blandit odio.
-                        Etiam posuere mi nisl, nec fringilla mauris maximus ac. Vivamus quis faucibus nisi. Cras lectus
-                        nisi,
-                        sagittis a sollicitudin id, blandit mollis sem. Fusce vel faucibus massa. Sed molestie rhoncus
-                        orci, eu
-                        viverra ante ultrices lacinia. Donec nisl neque, convallis id tempus ac, malesuada id ligula.o
-                        additional content. This content is a little bit longer.</p>
+                        <%=data[0].descripcion%></p>
 
                 </div>
             </div>

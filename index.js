@@ -150,8 +150,21 @@ app.get("/error404", (req, res) => {
     res.status(200).render("error404");
 
 });
-app.get('/visualizar', (req, res) => {
-    res.status(200).render("visualizarPost");
+app.get('/visualizar/:id', (req, res) => {
+    var id= req.params.id;
+    
+    PostModel.find({ id:id }, (err, post) => {  
+        console.log(post);
+        res.status(200).render("visualizarPost", {data:post});
+    });
+    
+});
+app.get('/eliminarPost/:id', (req, res) => {
+    var id= req.params.id;
+    PostModel.find({ id:id }, (err, post) => {  
+        console.log(post);
+        res.status(200).render("visualizarPost", {data:post});
+    });
     
 });
 
