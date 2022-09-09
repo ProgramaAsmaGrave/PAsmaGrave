@@ -25,15 +25,15 @@
                 <div class="row">
 
                     <ul id="paginated-list" data-current-page="1" aria-live="polite">
-                        <% for(let i=0; i<20; i++) { %>
+                        <% for(let i=0; i<9; i++) { %>
                            
                             <li>
                                 <div class="col-12">
                                     <div class="card" style="width: 50rem">
                                         <div class="card-body">
-                                            <h5 class="card-title"><%=i%>
+                                            <h5 class="card-title"><%=data[i].titulo%>
                                             </h5>
-                                            <p class="card-text"><%=i+1%></p>
+                                            <p class="card-text">Fecha: <%=data[i].fecha%></p>
                                             <button type="button" class="btn btn-primary">
                                                 Visualizar
                                             </button>

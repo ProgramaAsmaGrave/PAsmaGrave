@@ -99,8 +99,12 @@ app.post("/login", (req, res) => {
 });
 
 app.get('/seccionAdmin', (req, res) => {
-    if(req.session.login)
-        res.status(200).render("edicionPosteos", {data:PostModel.find()});
+    if(req.session.login){
+        PostModel.find(function(err, post) {   
+            res.status(200).render("edicionPosteos", {data:post});
+        });
+        
+    }
     else{
         isLogin = 4
         res.status(200).render("index", {login: req.session.login,isLogin: 4});
