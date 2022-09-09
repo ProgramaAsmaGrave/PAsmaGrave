@@ -18,11 +18,7 @@
     <%-include('fragments/admin', {data:data})%>
 
     <body>
-        <main>
-
-
-            <li class="publicacion">
-                <div class="row">
+                <div class="row publicacion " >
 
                     <ul id="paginated-list" data-current-page="1" aria-live="polite">
                         <% for(let i=0; i<data.length; i++) { %>
@@ -50,6 +46,7 @@
                             <% }; %>
                          
                     </ul>
+                    </div>
 
                     <nav class="pagination-container">
                         <button class="pagination-button" id="prev-button" aria-label="Previous page"
@@ -65,9 +62,6 @@
                             &gt;
                         </button>
                     </nav>
-        </main>
-
-        
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
         function cartel(encontrar) {
