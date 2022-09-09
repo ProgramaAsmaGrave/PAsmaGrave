@@ -27,8 +27,7 @@
                                 <div class="col-12">
                                     <div class="card" style="width: 50rem">
                                         <div class="card-body">
-                                            <h4 class="card-title"><%=data[i].titulo%>
-                                            </h4>
+                                            <h4 class="card-title"><%=data[i].titulo[0].toUpperCase()+(data[i].titulo).substring(1)%>.</h4>
                                             <h6 class="card-text">Fecha: <%=data[i].fecha%></h6>
                                             <h6 class="card-text">ID: <%=data[i].id%></h6>
                                             <h6 class="card-text">Tags: <%=data[i].tags%></h6>
