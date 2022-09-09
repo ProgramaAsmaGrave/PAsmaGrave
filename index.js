@@ -161,10 +161,7 @@ app.get('/visualizar/:id', (req, res) => {
 });
 app.get('/eliminarPost/:id', (req, res) => {
     var id= req.params.id;
-    PostModel.find({ id:id }, (err, post) => {  
-        console.log(post);
-        res.status(200).render("visualizarPost", {data:post});
-    });
+    PostModel.find({ id:id }).remove().exec();
     
 });
 
