@@ -100,9 +100,12 @@ app.post("/login", (req, res) => {
 
 app.get('/seccionAdmin', (req, res) => {
     if(req.session.login){
-        PostModel.find(function(err, post) {   
+        
+        PostModel.find().sort({id: -1}).exec(function(err, post) {   
+            console.log(post);
             res.status(200).render("edicionPosteos", {data:post});
         });
+        
         
     }
     else{
