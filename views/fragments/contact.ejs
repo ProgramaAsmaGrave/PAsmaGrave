@@ -8,12 +8,10 @@
     </head>
     <body>
         <h2 class="mb-lg-2 mb-7 centrar-texto">Contacto</h2>
-        <div class="container">
+        <div class="container needs-validation"novalidate>
             <form action="/contactForm" method="post">
-                <span class="obligatorio">* Obligatorio</span>
                 <div class="col-md-6">
                     <label for="titulo">&#128304; Nombre</label>
-                    <span class="obligatorio">*</span>
                 </div>
                 <div class="col-100">
                     <input
@@ -21,11 +19,11 @@
                         name="nombre"
                         id="nombre"
                         placeholder="Ingresa tu nombre..."
+                        required
                     />
                 </div>
                 <div class="col-md-6">
                     <label for="apellido">&#128213; Apellido</label>
-                    <span class="obligatorio">*</span>
                 </div>
                 <div class="col-100">
                     <input
@@ -33,11 +31,11 @@
                         name="apellido"
                         id="apellido"
                         placeholder="Agrega tu apellido..."
+                        required
                     />
                 </div>
                 <div class="col-md-6">
                     <label for="email">&#128231; Correo electrónico</label>
-                    <span class="obligatorio">*</span>
                 </div>
                 <div class="col-100">
                     <input
@@ -45,6 +43,7 @@
                         name="correo"
                         id="correo"
                         placeholder="Ingresa tu correo electronico..."
+                        required
                     />
                 </div>
                 <div class="col-md-6">
@@ -56,6 +55,7 @@
                         name="telefono"
                         id="telefono"
                         placeholder="Ingresa tu numero de telefono.."
+                        
                     />
                 </div>
                 <div class="col-md-6">
@@ -66,6 +66,7 @@
                         type="text"
                         name="consulta"
                         placeholder="Ingresa tu consulta..."
+                        required
                     />
                 </div>
                 <div class="row align-items-center">
