@@ -341,6 +341,10 @@ strong {
     text-align: center;
 }
 
+.margenes{
+    margin-bottom: 50px;
+}
+
 .navbar-brand strong {
     color: var(--p-color);
     font-size: 12px;
