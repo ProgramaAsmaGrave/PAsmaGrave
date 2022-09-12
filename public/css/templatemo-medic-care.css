@@ -348,7 +348,16 @@ strong {
     bottom: 5px;
 }
 
-.navbar-expand-lg .navbar-nav .nav-link {
+.dropdown-toggle{
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    color: var(--p-color);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--menu-font-size);
+    margin-top: 30px;
+    padding-bottom: 15px;
+}
+.navbar-expand-lg .navbar-nav .nav-link{
     padding-right: 1.5rem;
     padding-left: 1.5rem;
 }
