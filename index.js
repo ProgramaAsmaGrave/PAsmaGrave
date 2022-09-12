@@ -279,15 +279,10 @@ app.post("/contactForm", async (req, res) => {
         if (err) {
             console.log(`error encontrado : ${err}`);
         } else {
-            formulario=2;
-            console.log(formulario);
-            
+            console.log(`Email enviado`);
         }
     });
-    res.redirect("/");
-
-    
-    
+    res.render("index");
 });
 
 
