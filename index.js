@@ -19,6 +19,7 @@ const { stringify } = require("querystring");
 global.isLogin = 0;
 global.login = false;
 global.idPosts=1;
+global.formulario=1;
 
 //vistas
 app.set("view engine", "ejs");
@@ -278,10 +279,15 @@ app.post("/contactForm", async (req, res) => {
         if (err) {
             console.log(`error encontrado : ${err}`);
         } else {
-            console.log(`Email enviado`);
+            formulario=2;
+            console.log(formulario);
+            
         }
     });
-    res.render("index");
+    res.redirect("/");
+
+    
+    
 });
 
 

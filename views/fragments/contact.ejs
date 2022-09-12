@@ -72,7 +72,26 @@
                 <div class="row align-items-center">
                     <input type="submit" value="Subir" id="botonsubmit" />
                 </div>
+
             </form>
+            
         </div>
+        <% if(formulario==1){ %>
+            <script>
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                showCloseButton: true
+              });
+        
+              Toast.fire({
+                icon: "error",
+                title: "Usuario y/o Contraseña incorrectos",
+              });
+            </script>
+            <% } %>
     </body>
 </html>
