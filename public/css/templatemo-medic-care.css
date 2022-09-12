@@ -4,7 +4,7 @@ https://templatemo.com/tm-566-medic-care
 */
 
 /*---------------------------------------
-  CUSTOM PROPERTIES ( VARIABLES )             
+  CUSTOM PROPERTIES ( VARIABLES )            
 -----------------------------------------*/
 @import url('https://fonts.googleapis.com/css2? family= Roboto:ital,wght@1,700 & display=swap');
 
@@ -41,7 +41,7 @@ body {
 }
 
 /*---------------------------------------
-  TYPOGRAPHY               
+  TYPOGRAPHY              
 -----------------------------------------*/
 
 h2,
@@ -124,7 +124,7 @@ a:hover {
 }
 
 /*---------------------------------------
-  CUSTOM LINK               
+  CUSTOM LINK              
 -----------------------------------------*/
 .custom-link {
     display: inline-block;
@@ -174,7 +174,7 @@ strong {
 }
 
 /*---------------------------------------
-  LIST GROUP               
+  LIST GROUP              
 -----------------------------------------*/
 .centrar-item {
     width: 200px;
@@ -348,14 +348,16 @@ strong {
     bottom: 5px;
 }
 
-.dropdown-toggle{
+.dropdown{
+    position: center;
     padding-right: 1.5rem;
     padding-left: 1.5rem;
     color: var(--p-color);
     font-weight: var(--font-weight-semibold);
     font-size: var(--menu-font-size);
-    margin-top: 30px;
+    padding-top: 10px;
     padding-bottom: 15px;
+   
 }
 .navbar-expand-lg .navbar-nav .nav-link{
     padding-right: 1.5rem;
@@ -368,8 +370,16 @@ strong {
     font-size: var(--menu-font-size);
     padding-top: 15px;
     padding-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
+.dropdown-toggle:focus,.dropdown-toggle:hover{
+    color: var(--dark-color);
+}
+.dropdown-toggle:focus {
+    color: var(--p-color);
+}
 .navbar-nav .nav-item.active .nav-link,
 .nav-link:focus,
 .nav-link:hover {
@@ -449,7 +459,7 @@ strong {
 }
 
 /*---------------------------------------
-  TIMELINE               
+  TIMELINE              
 -----------------------------------------*/
 .timeline,
 .timeline-nodes {
@@ -661,7 +671,7 @@ strong {
 }
 
 /*---------------------------------------
-  REVIEWS               
+  REVIEWS              
 -----------------------------------------*/
 
 .tipografi{
@@ -802,7 +812,7 @@ strong {
 }
 
 /*---------------------------------------
-  SOCIAL ICON               
+  SOCIAL ICON              
 -----------------------------------------*/
 .social-icon {
     margin: 0;
@@ -834,7 +844,7 @@ strong {
 }
 
 /*---------------------------------------
-  RESPONSIVE STYLES               
+  RESPONSIVE STYLES              
 -----------------------------------------*/
 @media screen and (min-width: 1600px) {
     .hero .container {
@@ -1004,3 +1014,4 @@ strong {
     width: 5px;
     margin-left: 96px;
 }
+
