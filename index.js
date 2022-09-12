@@ -166,6 +166,7 @@ app.get('/eliminarPost/:id', (req, res) => {
         console.log(post);
         res.status(200).render("edicionPosteos", {data:post});
     });
+    res.redirect("/seccionAdmin");
     
 });
 
