@@ -6,7 +6,7 @@ body{
   padding: 25vh;
 }
 h1{
-  font-size: 100px;
+  font-size: 40px;
   font-weight: 600;
 }
 h3{
@@ -21,6 +21,14 @@ h3{
   border-radius: 15px;
   
 }
+img{
+  text-align: center;
+}
+div.container {
+  width: 96%;
+  max-width: 960px;
+  margin: 0 auto;
+  }
 
 body {
   background: linear-gradient(-45deg, #2a3586, #272e44, #295386, #000000);
