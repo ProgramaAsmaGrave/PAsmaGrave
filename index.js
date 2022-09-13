@@ -179,12 +179,14 @@ app.get('/editarpost/:id', (req, res) => {
     });
     
 });
-app.get('/editarposteo/:id', (req, res) => {
+app.post('/editarposteo/:id', (req, res) => {
     var id= req.params.id;
-    PostModel.find({ id:id }, (err, post) => {  
-        console.log(post);
-        res.status(200).render("editPosteo", {data:post});
-    });
+    PostModel.findOneAndUpdate({ id: id },
+    { $set: { titulo: req.body.titulo,descripcion: req.body.descripcion,fecha: req.body.fecha,enlace: req.body.enlace,tags: req.body.tag} }, { new: true }, function (err, doc) {
+        if (err) console.log("Error ", err);
+                console.log("Updated Doc -> ", doc);
+                res.status(200).render("login", { isLogin: isLogin, login: req.session.login });
+            });
     
 });
 
