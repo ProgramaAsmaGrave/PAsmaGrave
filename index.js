@@ -282,7 +282,7 @@ app.post("/contactForm", async (req, res) => {
             console.log(`Email enviado`);
         }
     });
-    res.render("index");
+    res.redirect("/");
 });
 
 
