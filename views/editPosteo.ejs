@@ -12,20 +12,18 @@
         <%-include('fragments/admin', {login:login})%>
 
         <div class="container">
-            <form action="/postear" method="post" class="form-bonito">
-                <span class="obligatorio">* Obligatorio</span>
+            <form action="/editarposteo<%=data[0].id%>" method="post" class="form-bonito">
                 <div class="row">
                     <div class="col-25">
                         <i class="fa-solid fa-comment-medical"></i>
                         <label for="titulo">Editar titulo</label>
-                        <span class="obligatorio">*</span>
                     </div>
                     <div class="col-75">
                         <input
                             type="text"
                             name="titulo"
                             id="titulo"
-                            placeholder="Agrega un titulo.."
+                            placeholder="<%=data[0].titulo[0].toUpperCase()+(data[0].titulo).substring(1)%>."
                         />
                     </div>
                 </div>
@@ -33,25 +31,24 @@
                     <div class="col-25">
                         <i class="fa-solid fa-bars"></i>
                         <label for="descripcion">Editar descripcion</label>
-                        <span class="obligatorio">*</span>
                     </div>
                     <div class="col-75">
                         <textarea
                             id="subject"
                             name="descripcion"
-                            placeholder="Agrega una descripcion.."
+                            placeholder="<%=data[0].descripcion%>"
                             style="height: 200px"
                         ></textarea>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row"> 
                     <div class="col-25">
                         <i class="fa-regular fa-calendar-check"></i>
                         <label for="fecha">Editar fecha</label>
-                        <span class="obligatorio">*</span>
                     </div>
                     <div class="col-75">
-                        <input type="date" id="lname" name="fecha" />
+                        <input type="date" id="lname" name="fecha" > Fecha actual: </h6><%=data[0].fecha%> 
+                        
                     </div>
                 </div>
                 <div class="row input-group">
@@ -72,25 +69,21 @@
                         <input
                             type="text"
                             name="enlace"
-                            placeholder="Agrega un enlace.."
+                            placeholder="<%=data[0].enlace%> "
                         />
                     </div>
                 </div>
-                <span class="obligatorio"
-                    >Los tags deben estar separados por una ","</span
-                >
                 <div class="row">
                     <div class="col-25">
                         <i class="fa-solid fa-tag"></i>
                         <label class="letras" for="tag">Editar tags:</label>
-                        <span class="obligatorio">*</span>
                     </div>
                     <div class="col-75">
                         <input
                             type="text"
                             id="tag"
                             name="tag"
-                            placeholder="Agregar tags..."
+                            placeholder="<%=data[0].tags%> "
                         />
                     </div>
                 </div>
@@ -98,15 +91,7 @@
                     <input type="submit" value="Subir" id="subirPost">
                 </div>
             </form>
-            <form action="/guardarImagen" method="post" enctype="multipart/form-data">
-                <div class="perfil-usuario-avatar">
-                    <div class="upload">
-                        <button type = "button" class = "boton-avatar">   
-                            <input type="file" name="image"  accept="image/png,image/jpeg">
-                        </button>
-                    </div>
-                    <input type="submit" value="Cargar" class="bajar"/>
-                    </form>
+
                     
         </div>
 

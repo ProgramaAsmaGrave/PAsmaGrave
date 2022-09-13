@@ -171,6 +171,23 @@ app.get('/eliminarPost/:id', (req, res) => {
     
 });
 
+app.get('/editarpost/:id', (req, res) => {
+    var id= req.params.id;
+    PostModel.find({ id:id }, (err, post) => {  
+        console.log(post);
+        res.status(200).render("editPosteo", {data:post});
+    });
+    
+});
+app.get('/editarposteo/:id', (req, res) => {
+    var id= req.params.id;
+    PostModel.find({ id:id }, (err, post) => {  
+        console.log(post);
+        res.status(200).render("editPosteo", {data:post});
+    });
+    
+});
+
 app.get("/kinesiologia", (req, res) => {
     res.status(200).render("kinesiologia");
     
