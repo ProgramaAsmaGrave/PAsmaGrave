@@ -13,7 +13,7 @@
 
         <div class="container">
             <form action="/editarposteo/<%=data[0].id%>" method="post" class="form-bonito">
-                <div class="row">
+                <div class="row needs-validation">
                     <div class="col-25">
                         <i class="fa-solid fa-comment-medical"></i>
                         <label for="titulo">Editar titulo</label>
@@ -23,7 +23,9 @@
                             type="text"
                             name="titulo"
                             id="titulo"
-                            placeholder="<%=data[0].titulo[0].toUpperCase()+(data[0].titulo).substring(1)%>."
+                            placeholder="Editar titulo"
+                            value="<%=data[0].titulo[0].toUpperCase()+(data[0].titulo).substring(1)%>."
+                            required
                         />
                     </div>
                 </div>
@@ -33,12 +35,13 @@
                         <label for="descripcion">Editar descripcion</label>
                     </div>
                     <div class="col-75">
-                        <textarea
-                            id="subject"
-                            name="descripcion"
-                            placeholder="<%=data[0].descripcion%>"
-                            style="height: 200px"
-                        ></textarea>
+                        <textarea 
+                        placeholder="Editar descripcion" 
+                        style="height: 200px"
+                        required
+                        ><%=data[0].descripcion%></textarea>
+                        
+                        
                     </div>
                 </div>
                 <div class="row"> 
@@ -47,7 +50,7 @@
                         <label for="fecha">Editar fecha</label>
                     </div>
                     <div class="col-75">
-                        <input type="date" id="lname" name="fecha" > Fecha actual: </h6><%=data[0].fecha%> 
+                        <input type="date" id="lname" name="fecha"> Fecha actual: </h6><%=data[0].fecha%> 
                         
                     </div>
                 </div>
@@ -69,21 +72,25 @@
                         <input
                             type="text"
                             name="enlace"
-                            placeholder="<%=data[0].enlace%> "
+                            placeholder="Editar enlace"
+                            value="<%=data[0].enlace%>"
+                            required
                         />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-25">
                         <i class="fa-solid fa-tag"></i>
-                        <label class="letras" for="tag">Editar tags:</label>
+                        <label class="letras" for="tag">Editar tags</label>
                     </div>
                     <div class="col-75">
                         <input
                             type="text"
                             id="tag"
                             name="tag"
-                            placeholder="<%=data[0].tags%> "
+                            placeholder="Editar tags"
+                            value="<%=data[0].tags%>"
+                            required
                         />
                     </div>
                 </div>
@@ -130,27 +137,6 @@
                     padding: 0.5,
                 });
             }
-            botonpress.addEventListener("click", (e) => {
-                // Validacion si los campos esnta vacios
-                if (
-                    validator.isEmpty(tituloinp.value) == true ||
-                    validator.isEmpty(descripcioninp.value) == true ||
-                    validator.isEmpty(fechainp.value) == true ||
-                    validator.isEmpty(taginp.value) == true
-                ) {
-                    swals(
-                        "error",
-                        "algunos campos obligatorios no estan siendo completados"
-                    );
-                    e.preventDefault();
-                }
-                //validacion cantidad de caracteres del titulo
-                if (validator.isLength(tituloinp.value,{ min: 10, max:55 }) == false) {
-                    swals("error", "el titulo no cumple con los requisitos");
-                    e.preventDefault();
-                }
-                e.preventDefault();
-            });
         </script>
     </body>
 </html>

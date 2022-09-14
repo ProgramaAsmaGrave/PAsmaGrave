@@ -185,7 +185,11 @@ app.post('/editarposteo/:id', (req, res) => {
     { $set: { titulo: req.body.titulo,descripcion: req.body.descripcion,fecha: req.body.fecha,enlace: req.body.enlace,tags: req.body.tag} }, { new: true }, function (err, doc) {
         if (err) console.log("Error ", err);
                 console.log("Updated Doc -> ", doc);
-                res.status(200).render("login", { isLogin: isLogin, login: req.session.login });
+                PostModel.find().sort({id: -1}).exec(function(err, post) {   
+                    console.log(post);
+                    res.status(200).render("edicionPosteos", {data:post});
+                });
+                
             });
     
 });
