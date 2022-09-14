@@ -30,24 +30,12 @@ div.container {
   margin: 0 auto;
   }
 
-body {
-  background: linear-gradient(-45deg, #2a3586, #272e44, #295386, #000000);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+  body {
+    background: linear-gradient( rgb(24, 24, 24), #919dab, #383737);
+    background-size: 400% 400%;
+    
+  }
   
-}
-
-@keyframes gradient {
-  0% { 
-      background-position: 0% 50%;
-  }
-  50% {
-      background-position: 100% 50%;
-  }
-  100% {
-      background-position: 0% 50%;
-  }
-}
 
 .card{
   border-radius: 20px;

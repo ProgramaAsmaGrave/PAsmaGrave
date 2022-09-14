@@ -1,21 +1,10 @@
 body {
-    background: linear-gradient(-45deg, #1e296d, rgb(0, 0, 0), #7a9bc3, #000000);
+    background: linear-gradient( rgb(24, 24, 24), #919dab, #383737);
     background-size: 400% 400%;
-    animation: gradient 7s ease infinite;
     
   }
   
-  @keyframes gradient {
-    0% { 
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-  }
+
 
 
 .btn{
@@ -44,7 +33,7 @@ body {
     left: -4px;
     border-radius: 50%;
     background: rgb(255, 255, 255);
-    
+    z-index: 1;
     
   }
   
