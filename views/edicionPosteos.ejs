@@ -17,13 +17,13 @@
     <%-include('fragments/admin', {data:data})%>
 
     <body>   
-                <div class="publicacion " >
+                <div class="publicacion" >
 
                     <ul id="paginated-list" data-current-page="1" aria-live="polite">
                         <% for(let i=0; i<data.length; i++) { %>
                             
                                 <div class="col-12">
-                                    <div class="card" style="margin-left: 55px;width: 60rem">
+                                    <div class="card" style="margin-left: 55px;width: 46rem">
                                         
                                         <div class="card-body">
                                             <h4 class="card-title"><%=data[i].titulo[0].toUpperCase()+(data[i].titulo).substring(1)%>.</h4>
@@ -32,7 +32,7 @@
                                             <h6 class="card-text">Tags: <%=data[i].tags%></h6>
                                             <textarea style="width: 700px ; height: 200px;max-height: 300px;"readonly><%=data[i].descripcion%></textarea>
                                             <br>
-                                            <a type="button" href="/visualizar/<%=data[i].id%>" class="btn btn-light">Visualizar</a>
+                                            <a type="button" href="/visualizar/<%=data[i].id%>" class="btn btn-outline-dark">Visualizar</a>
                                             <a type="button" href="/editarpost/<%=data[i].id%>" class="btn btn-primary">Editar</a>
                                             <a type="button" onclick="Eliminar('<%=data[i].id%>','<%=data[i].titulo[0].toUpperCase()+(data[i].titulo).substring(1)%>')" class="btn btn-danger">Eliminar</a>
                                             
