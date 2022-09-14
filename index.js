@@ -90,8 +90,7 @@ app.post("/login", (req, res) => {
                     res.status(200).render("index", {isLogin: 5,login: req.session.login});                     
                 }     
                 else {
-                    isLogin = 2;
-                    res.status(200).render("login", {isLogin: isLogin,login: req.session.login});
+                    res.status(200).render("login", {isLogin: 2,login: req.session.login});
                 }
             });
         }
@@ -109,7 +108,6 @@ app.get('/seccionAdmin', (req, res) => {
         
     }
     else{
-        isLogin = 4
         res.status(200).render("index", {isLogin: 4,login: req.session.login}); 
     }
 });
@@ -118,7 +116,6 @@ app.get("/config", (req, res) => {
         res.status(200).render("config");
     }
     else{
-        isLogin = 4
         res.status(200).render("index", {login: req.session.login,isLogin: 4});
     }
 });
@@ -131,7 +128,6 @@ app.get("/postear", (req, res) => {
         });
     }
     else{
-        isLogin = 4
         res.status(200).render("index", {isLogin: 4,login: req.session.login}); 
     }
 
@@ -231,11 +227,9 @@ app.post("/subirpost", (req, res) => {
         posteo.save((err,db)=>{
             if(err){
             console.log(err);
-            isLogin=8;
             res.status(200).render("index", {isLogin: 8,login: req.session.login}); 
             } 
             else{
-            isLogin=7;
             res.status(200).render("index", {isLogin: 7,login: req.session.login}); 
             } 
             })
