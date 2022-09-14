@@ -331,7 +331,9 @@ strong {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
+.navbar-collapse{
+    margin-top: 15px;
+}
 .navbar-brand {
     color: #30499b;
     font-size: var(--h5-font-size);
