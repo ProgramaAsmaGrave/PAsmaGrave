@@ -283,7 +283,7 @@ app.post("/contactForm", async (req, res) => {
     // send mail with defined transport object
     let contenido = {
         from: "jaguerodiaz@escuelaproa.edu.ar", // sender address
-        to: "aegonzalez@escuelasproa.edu.ar", // list of receivers
+        to: "jjgenio.com@gmail.com", // list of receivers
         subject: "consulta de paciente", // Subject line
         text:
             req.body.nombre +
