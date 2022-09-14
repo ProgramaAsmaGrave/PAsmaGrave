@@ -1,9 +1,7 @@
 body{
-  background: #004466;
+
   color: white;
   font-family: Helvetica, Arial;
-  text-align: center;
-  padding: 25vh;
 }
 h1{
   font-size: 40px;
@@ -14,34 +12,20 @@ h3{
 
 }
 .btn{
-  margin: 5px 0;
+
   background-color: #185dac;
   color: rgb(255, 255, 255);
   padding: 5px 10px;
   border-radius: 15px;
-  
 }
-img{
-  text-align: center;
-}
-div.container {
-  width: 96%;
-  max-width: 960px;
-  margin: 0 auto;
-  }
 
-  body {
+body {
     background: linear-gradient( rgb(24, 24, 24), #919dab, #383737);
     background-size: 400% 400%;
-    
   }
   
 
-.card{
-  border-radius: 20px;
-  margin-top:300px;
 
-}
 .header-title {
   font-family: url(https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap);
 }
