@@ -36,10 +36,12 @@
                     </div>
                     <div class="col-75">
                         <textarea 
+                        type="text"
+                        name="descripcion"
+                        id="descripcion"
                         placeholder="Editar descripcion" 
                         style="height: 200px"
-                        required
-                        ><%=data[0].descripcion%></textarea>
+                        required><%=data[0].descripcion%></textarea>
                         
                         
                     </div>
@@ -50,7 +52,7 @@
                         <label for="fecha">Editar fecha</label>
                     </div>
                     <div class="col-75">
-                        <input type="date" id="lname" name="fecha"> Fecha actual: </h6><%=data[0].fecha%> 
+                        <input type="date" id="lname" name="fecha" required> Fecha actual: </h6><%=data[0].fecha%> 
                         
                     </div>
                 </div>
