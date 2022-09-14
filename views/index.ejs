@@ -54,23 +54,9 @@
         <script src="js/custom.js"></script>
         <!-- JavaScript Bundle with Popper -->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <% if(login && isLogin==5){ %>
-        <script>
-        const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        showCloseButton: true
-      });
+        
+        
 
-      Toast.fire({
-        icon: "success",
-        title: "Bienvenido Administrador",
-      });
-        </script>
-        <%}%>
         <% if(isLogin == 4){ %>
             <script>
         const Toast2 = Swal.mixin({
@@ -125,5 +111,23 @@
                       
                   </script>
                   <%}%>
+                  <% if(isLogin == 5 && login==true){ %>
+                    <script>
+                const Toast5 = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                showCloseButton: true
+              });
+        
+              Toast5.fire({
+                icon: "success",
+                title: "Bienvenido Administrador",
+              });
+                        
+                    </script>
+                    <%}%>
     </body>
 </html>

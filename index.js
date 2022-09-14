@@ -87,8 +87,7 @@ app.post("/login", (req, res) => {
 
                 if (resul) {
                     req.session.login = true;
-                    isLogin = 5;
-                    res.redirect("/");                      
+                    res.status(200).render("index", {isLogin: 5,login: req.session.login});                     
                 }     
                 else {
                     isLogin = 2;
@@ -111,7 +110,7 @@ app.get('/seccionAdmin', (req, res) => {
     }
     else{
         isLogin = 4
-        res.status(200).render("index", {login: req.session.login,isLogin: 4});
+        res.status(200).render("index", {isLogin: 4,login: req.session.login}); 
     }
 });
 app.get("/config", (req, res) => {
@@ -133,7 +132,7 @@ app.get("/postear", (req, res) => {
     }
     else{
         isLogin = 4
-        res.status(200).render("index", {login: req.session.login,isLogin: 4});
+        res.status(200).render("index", {isLogin: 4,login: req.session.login}); 
     }
 
 
@@ -233,11 +232,11 @@ app.post("/subirpost", (req, res) => {
             if(err){
             console.log(err);
             isLogin=8;
-            res.status(200).render("index", { login: req.session.login, isLogin: isLogin });
+            res.status(200).render("index", {isLogin: 8,login: req.session.login}); 
             } 
             else{
             isLogin=7;
-            res.status(200).render("index", { login: req.session.login, isLogin: isLogin });
+            res.status(200).render("index", {isLogin: 7,login: req.session.login}); 
             } 
             })
         });
