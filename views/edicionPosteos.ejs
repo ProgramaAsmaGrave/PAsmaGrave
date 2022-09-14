@@ -17,11 +17,11 @@
     <%-include('fragments/admin', {data:data})%>
 
     <body>   
-                <div class="row publicacion " >
+                <div class="publicacion " >
 
                     <ul id="paginated-list" data-current-page="1" aria-live="polite">
                         <% for(let i=0; i<data.length; i++) { %>
-                            <li>
+                            
                                 <div class="col-12">
                                     <div class="card" style="margin-left: 55px;width: 30rem">
                                         <div class="card-body">
@@ -35,7 +35,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            
                             <% }; %>   
                     </ul>
                     </div>
