@@ -87,8 +87,8 @@ app.post("/login", (req, res) => {
 
                 if (resul) {
                     req.session.login = true;
-                    isLogin = 5;                      
-                    res.status(200).render("index", { login: req.session.login, isLogin: isLogin });
+                    isLogin = 5;
+                    res.redirect("/");                      
                 }     
                 else {
                     isLogin = 2;
