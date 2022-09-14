@@ -17,17 +17,34 @@ body {
     }
   }
 
+
 .btn{
     border-radius: 5px;
+
 }
 .avatar{
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     position: relative;
+    top: -70px; left: -3px;
     bottom: 45px;
     z-index:2;
 }
 
 .card{
     bottom: 100px;
+    background: rgb(255, 255, 255);
 }
+.circle { 
+    margin: -50px auto;
+    width: 70px; 
+    height: 70px;
+    position: relative;
+    top: 45px;
+    left: -4px;
+    border-radius: 50%;
+    background: rgb(255, 255, 255);
+    
+    
+  }
+  
