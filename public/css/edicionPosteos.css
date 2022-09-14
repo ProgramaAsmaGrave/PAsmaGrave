@@ -1,11 +1,8 @@
 .publicacion{
-    margin-left: 9.5%;
     margin-right: 9.5%;
-    padding-top: 0%;
-    padding-bottom: 8%;
     display: flex;
+    justify-content: center;
     flex-direction: row;
-    align-items: baseline;
     gap: 10px;
 }
 .btn-primary{
