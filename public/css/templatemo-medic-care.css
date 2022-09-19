@@ -328,8 +328,8 @@ strong {
   NAVIGATION              
 -----------------------------------------*/
 .navbar {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .navbar-collapse{
     margin-top: 15px;
@@ -893,8 +893,8 @@ strong {
     }
 
     .navbar {
-        padding-top: 10px;
-        padding-bottom: 50px;
+        padding-top: 5px;
+        padding-bottom: 10px;
     }
 
     .navbar-nav .nav-link {
