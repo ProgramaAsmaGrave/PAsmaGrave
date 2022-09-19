@@ -23,7 +23,7 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <p class="card-text"><small class="text-muted"><%=data[0].fecha%></small></p>
-                    <h5 class="card-title"><%=data[0].titulo%></h5>
+                    <h5 class="card-title"><%=data[0].titulo[0].toUpperCase()+(data[0].titulo).substring(1)%></h5>
                     <p class="card-text">
                         <%=data[0].descripcion%></p>
 
