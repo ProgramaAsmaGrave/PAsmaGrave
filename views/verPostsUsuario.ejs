@@ -35,7 +35,7 @@
           <div class="imgPostCard"></div>
           <div class="postContent">
             <h5 class="tagPostCard">#<%=i.tags%></h5>
-            <h4 class="titlePostCard"><%=i.titulo%></h4>
+            <h4 class="titlePostCard"><%=i.titulo[0].toUpperCase()+(i.titulo).substring(1)%></h4>
             <h6 class="datePostCard"><%=i.fecha%></h6>
           </div>
         </a>
