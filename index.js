@@ -306,12 +306,17 @@ app.post("/contactForm", async (req, res) => {
     // send mail with defined transport object
     let contenido = {
         from: "jaguerodiaz@escuelaproa.edu.ar", // sender address
-        to: "jjgenio.com@gmail.com", // list of receivers
+        to: "lnespinoza@escuelasproa.edu.ar", // list of receivers
         subject: "consulta de paciente", // Subject line
         text:
-            req.body.nombre +
-            "  " +
-            req.body.apellido +
+            "\n" +
+            "Nombre:"+
+            "\n" +
+            req.body.nombreCompleto +
+            "\n" +
+            "Numero:"+
+            "\n" +
+            req.body.telefono +
             "\n" +
             "consulta:" +
             "\n" +
@@ -319,7 +324,7 @@ app.post("/contactForm", async (req, res) => {
             "\n" +
             "mail del paciente:" +
             "\n" +
-            req.body.correo, // plain text body
+            req.body.email, // plain text body
     };
     transporter.sendMail(contenido, function (err, data) {
         if (err) {
