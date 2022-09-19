@@ -165,6 +165,17 @@ app.get('/eliminarPost/:id', (req, res) => {
     res.redirect("/seccionAdmin");
     
 });
+app.get('/verPostsUsuario', (req, res) => {
+    PostModel.find(function(err, data) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(data);
+            res.status(200).render("verPostsUsuario", {data: data});
+        }
+    }); 
+});
 
 app.get('/editarpost/:id', (req, res) => {
     var id= req.params.id;

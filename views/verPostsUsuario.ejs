@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicaciones y Noticias</title>
+
+  <link rel="stylesheet" href="css/verPostsUsuario.css">
+  <link href="//fonts.googleapis.com/css?family=Roboto|Open+Sans:200,300,400,700,800,900&amp;subset=latin" rel="preload"
+    as="font">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+    <%-include('fragments/head.ejs')%>
+</head>
+
+<body>
+  <%-include('fragments/navbar.ejs', {data:data})%>
+
+  <div class="introduccion">
+    <h2>Noticias y publicaciones</h2>
+    <h6>En esta sección podrás ver todas las publicaciones hechas por nosotros.</h6>
+  </div>
+
+  <div class="contenido">
+    <div class="posts">
+      <% data.forEach(function(i){ %>
+        <a href="https://www.clarin.com/economia/1-000-dias-gobierno-alberto-fernandez-inflacion-acumulo-221-_0_oDJxldkC5D.html" class="items">
+          <div class="imgPostCard"></div>
+          <div class="postContent">
+            <h5 class="tagPostCard">#<%=i.tags%></h5>
+            <h4 class="titlePostCard"><%=i.titulo%></h4>
+            <h6 class="datePostCard"><%=i.fecha%></h6>
+          </div>
+        </a>
+      <%});%>
+    </div>
+    <div class="filtros">
+      <div class="fechas">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
