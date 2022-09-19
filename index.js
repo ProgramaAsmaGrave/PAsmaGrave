@@ -176,6 +176,18 @@ app.get('/verPostsUsuario', (req, res) => {
         }
     }); 
 });
+app.get('/contactanos', (req, res) => {
+    PostModel.find(function(err, data) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(data);
+            res.status(200).render("vistaContacto", {data: data});
+        }
+    }); 
+});
+
 
 app.get('/editarpost/:id', (req, res) => {
     var id= req.params.id;
