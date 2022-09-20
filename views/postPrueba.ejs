@@ -20,7 +20,7 @@
     <body>
         <%-include('fragments/admin', {login:login})%>
         <div class="container">
-            <form action="/subirpost" method="post" class="form-bonito">
+            <form action="/subirpost" enctype="multipart/form-data" method="post" class="form-bonito">
                 <div class="row needs-validation" novalidate>
                     <div class="col-25">
                         <i class="fa-solid fa-comment-medical"></i>
@@ -67,7 +67,7 @@
                         <label for="image">Select image</label>
                     </div>
                     <div class="col-75">
-                        <input id="image" type="file" name="image"/>
+                        <input type="file" name="foto" />
                     </div>
                     
                 <div class="row">
