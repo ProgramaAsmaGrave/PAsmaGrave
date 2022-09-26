@@ -18,7 +18,7 @@ var storage = multer.diskStorage({
       cb(null, 'public/files');
     },
     filename: function (req, file, cb) {
-      cb(null, file.fieldname + ".png");
+      cb(null, file.fieldname + '-' + Date.now() + ".png");
     }
   })
    
@@ -273,11 +273,11 @@ app.post("/subirpost1", (req, res) => {
             
 });
 app.post('/subirpost', upload.single('foto'),function (req, res, next) {
-    console.log(req.body.foto)
+    console.log("holaa"+req.file.filename)
         let fecha=req.body.fecha;
         let titulo= req.body.titulo;
         let descripcion = req.body.descripcion;
-        let imagen = req.body.foto;
+        let imagen = "./files/"+req.file.filename;
         let enlace = req.body.enlace;
         let tag = req.body.tag;
 

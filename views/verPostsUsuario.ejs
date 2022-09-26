@@ -32,7 +32,7 @@
     <div class="posts">
       <% data.forEach(function(i){ %>
         <a href="visualizar/<%=i.id%>" class="items">
-          <div class="imgPostCard"></div>
+          <img class="imgPostCard" src="<%=i.imagen%>">
           <div class="postContent">
             <h5 class="tagPostCard">#<%=i.tags%></h5>
             <h4 class="titlePostCard"><%=i.titulo[0].toUpperCase()+(i.titulo).substring(1)%></h4>
