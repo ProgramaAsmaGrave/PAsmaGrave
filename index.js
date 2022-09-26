@@ -159,15 +159,15 @@ app.get("/error404", (req, res) => {
     res.status(200).render("error404");
 
 });
+
 app.get('/visualizar/:id', (req, res) => {
     var id= req.params.id;
-    
     PostModel.find({ id:id }, (err, post) => {  
         console.log(post);
         res.status(200).render("visualizarPost", {data:post});
-    });
-    
+    }); 
 });
+
 app.get('/eliminarPost/:id', (req, res) => {
     var id= req.params.id;
     PostModel.find({ id:id }).remove().exec();
@@ -178,6 +178,7 @@ app.get('/eliminarPost/:id', (req, res) => {
     res.redirect("/seccionAdmin");
     
 });
+
 app.get('/verPostsUsuario', (req, res) => {
     PostModel.find(function(err, data) {
         if(err){
@@ -189,6 +190,7 @@ app.get('/verPostsUsuario', (req, res) => {
         }
     }); 
 });
+
 app.get('/contactanos', (req, res) => {
     PostModel.find(function(err, data) {
         if(err){
@@ -201,7 +203,6 @@ app.get('/contactanos', (req, res) => {
     }); 
 });
 
-
 app.get('/editarpost/:id', (req, res) => {
     var id= req.params.id;
     PostModel.find({ id:id }, (err, post) => {  
@@ -210,6 +211,7 @@ app.get('/editarpost/:id', (req, res) => {
     });
     
 });
+
 app.post('/editarposteo/:id', (req, res) => {
     var id= req.params.id;
     PostModel.findOneAndUpdate({ id: id },
@@ -222,20 +224,18 @@ app.post('/editarposteo/:id', (req, res) => {
                 });
                 
             });
-    
 });
 
 app.get("/kinesiologia", (req, res) => {
     res.status(200).render("kinesiologia");
-    
 });
+
 app.get("/saludMental", (req, res) => {
     res.status(200).render("saludmental");
-    
 });
+
 app.get("/neumonologia", (req, res) => {
-    res.status(200).render("neumonologia");
-    
+    res.status(200).render("neumonologia");   
 });
 
 app.post("/subirpost1", (req, res) => {
@@ -245,12 +245,9 @@ app.post("/subirpost1", (req, res) => {
         let imagen = req.body.imagen;
         let enlace = req.body.enlace;
         let tag = req.body.tag;
-
         PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
             console.log("Ultimo Id:"+post.id.toString());
             idPosts=post.id;
-        
-
         let posteo = new PostModel({
         id:idPosts+1,
         fecha: fecha,
@@ -269,9 +266,9 @@ app.post("/subirpost1", (req, res) => {
             res.status(200).render("index", {isLogin: 7,login: req.session.login}); 
             } 
             })
-        });
-            
+        });       
 });
+
 app.post('/subirpost', upload.single('foto'),function (req, res, next) {
     console.log("holaa"+req.file.filename)
         let fecha=req.body.fecha;
@@ -280,11 +277,8 @@ app.post('/subirpost', upload.single('foto'),function (req, res, next) {
         let imagen = "./files/"+req.file.filename;
         let enlace = req.body.enlace;
         let tag = req.body.tag;
-
         PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
-            idPosts=post.id;
-            
-
+        idPosts=post.id;
         let posteo = new PostModel({
         id:idPosts+1,
         fecha: fecha,
@@ -305,48 +299,36 @@ app.post('/subirpost', upload.single('foto'),function (req, res, next) {
                     const error = new Error('Please choose files');
                     error.httpStatusCode = 400;
                     return next(error);
-                  }
+                }
             res.status(200).render("index", {isLogin: 7,login: req.session.login}); 
             } 
             })
         });
-  });
-
-
-
+});
 
 app.post("/ChangeDatos", (req, res) => {
     res.status(200).render("login");
     if (req.session.login) {
-        Admin.findOneAndUpdate({ nombre: "admin" },
-{ $set: { contraseña: req.body.contraseña } }, { new: true }, function (err, doc) {
-                if (err) console.log("Error ", err);
-                console.log("Updated Doc -> ", doc);
-                res.status(200).render("login", { isLogin: isLogin, login: req.session.login });
-            });
+        Admin.findOneAndUpdate({ nombre: "admin" },{ $set: { contraseña: req.body.contraseña } }, { new: true }, function (err, doc) {
+            if (err) console.log("Error ", err);
+            console.log("Updated Doc -> ", doc);
+            res.status(200).render("login", { isLogin: isLogin, login: req.session.login });
+        });
 
-
-            Admin.findOneAndUpdate({ nombre: "admin" },
-            { $set: { usuario: req.body.usuario } }, { new: true }, function (err, doc) {
-                if (err) console.log("Error ", err);
-                console.log("Updated Doc -> ", doc);
-                res.status(200).render("login", { isLogin: isLogin, login: req.session.login });
-            });
-
-
+        Admin.findOneAndUpdate({ nombre: "admin" },{ $set: { usuario: req.body.usuario } }, { new: true }, function (err, doc) {
+            if (err) console.log("Error ", err);
+            console.log("Updated Doc -> ", doc);
+            res.status(200).render("login", { isLogin: isLogin, login: req.session.login });
+        });
     }
 });
 
-
-
 app.get("/*", (req, res) => {
-    res.status(200).render("error404");
-    
+    res.status(200).render("error404"); 
 });
 
-
 app.post("/contactForm", async (req, res) => {
-    //Envio de mail de contacto
+
     let transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -355,7 +337,6 @@ app.post("/contactForm", async (req, res) => {
         },
     });
 
-    // send mail with defined transport object
     let contenido = {
         from: "jaguerodiaz@escuelaproa.edu.ar", // sender address
         to: "lnespinoza@escuelasproa.edu.ar", // list of receivers
@@ -387,21 +368,6 @@ app.post("/contactForm", async (req, res) => {
     });
     res.redirect("/");
 });
-
-
-
-
-
-//RUTAS
-/*
-  
-    router.route("/edicion").get(adminController.edicion);
-    router.route("/editarPosteo").get(adminController.editarPost);
-  
-*/
-
-
-
 
 app.post("/cargarImagen", async (req, res) => {
     res.render("config");
