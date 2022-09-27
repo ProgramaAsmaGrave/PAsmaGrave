@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient( #2a52a2, #919dab, #383737);
+    background: linear-gradient( #214792, #4a6e96, #383737);
     background-size: 400% 400%;
     
   }
@@ -21,6 +21,7 @@ body {
 }
 
 .card{
+    box-shadow: rgba(0, 0, 0, 0.7) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     bottom: 100px;
     background: rgb(255, 255, 255);
 }
