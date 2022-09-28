@@ -100,7 +100,7 @@ app.post("/login", (req, res) => {
 
                 if (resul) {
                     req.session.login = true;
-                    res.status(200).render("index", {isLogin: 5,login: req.session.login});                     
+                    res.status(200).redirect("/config");                  
                 }     
                 else {
                     res.status(200).render("login", {isLogin: 2,login: req.session.login});
@@ -126,7 +126,7 @@ app.get('/seccionAdmin', (req, res) => {
 });
 app.get("/config", (req, res) => {
     if(req.session.login){
-        res.status(200).render("config");
+        res.status(200).render("config",{isLogin:5,login:req.session.login});
     }
     else{
         res.status(200).render("index", {login: req.session.login,isLogin: 4});
