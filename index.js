@@ -7,7 +7,7 @@ const cors = require("cors");
 const session = require("cookie-session");
 const nodemailer = require("nodemailer");
 const  imgbbUploader  =  require ( "imgbb-uploader" ) ;
-
+const fileUpload = require("express-fileupload");
 //Base de Datos
 const mongoose = require("mongoose");
 const Admin = require("./models/myModel");
@@ -63,7 +63,7 @@ app.use(express.json());
 //Configurando archivos estáticos
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use(fileUpload());
 const port = 3000;
 
 //Corremos el servidor en el puerto seleccionado
@@ -165,6 +165,9 @@ app.get("/error404", (req, res) => {
     res.status(200).render("error404");
 
 });
+app.get("/OA", (req, res) => {
+    res.status(200).render("Prueba");
+  });
 
 app.get('/visualizar/:id', (req, res) => {
     var id= req.params.id;
@@ -173,6 +176,25 @@ app.get('/visualizar/:id', (req, res) => {
         res.status(200).render("visualizarPost", {data:post});
     }); 
 });
+app.post("/upload", (req, res) => {
+    if (!req.files) {
+      return res.status(400).send("No files were uploaded.");
+    }
+    const file = req.files.foto;
+    const path ="./public/files/" + file.name;
+    console.log("HOAA"+path);
+    file.mv(path, (err) => {
+      if (err) {
+        
+        return res.status(500).send(err);
+      }
+      console.log("/files/" + file.name);
+        imgbbUploader("04facdbd2e755d55e56fdc0f9e422f92", "./public/files/" + file.name)
+                    .then((res) => console.log(res.url))
+                    .catch((error) => console.error(error));
+      return res.send({ status: "success", path: path });
+    });
+  });
 
 app.get('/eliminarPost/:id', (req, res) => {
     var id= req.params.id;
