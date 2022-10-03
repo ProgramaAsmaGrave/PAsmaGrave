@@ -6,6 +6,8 @@ const cloudinary = require("cloudinary").v2;
 const cors = require("cors");
 const session = require("cookie-session");
 const nodemailer = require("nodemailer");
+const  imgbbUploader  =  require ( "imgbb-uploader" ) ;
+
 //Base de Datos
 const mongoose = require("mongoose");
 const Admin = require("./models/myModel");
@@ -278,10 +280,14 @@ app.post('/subirpost', upload.single('foto'),function (req, res, next) {
         let fecha=req.body.fecha;
         let titulo= req.body.titulo;
         let descripcion = req.body.descripcion;
-        let imagen = "./files/"+req.file.filename;
+        let imagen ;
         let enlace = req.body.enlace;
         let tag = req.body.tag;
-        PostModel.findOne().sort({id: -1}).exec(function(err, post) {   
+        imgbbUploader("04facdbd2e755d55e56fdc0f9e422f92", "./public/files/"+req.file.filename)
+                    .then((res) => console.log(res.url))
+                    .catch((error) => console.error(error));
+                    imagen= res.url;
+        PostModel.findOne().sort({id: -1}).exec(function(err, post) {  
         idPosts=post.id;
         let posteo = new PostModel({
         id:idPosts+1,
@@ -291,24 +297,27 @@ app.post('/subirpost', upload.single('foto'),function (req, res, next) {
         imagen: imagen,
         enlace: enlace,
         tags: tag,
-        });  
+        }); 
         posteo.save((err,db)=>{
             if(err){
             console.log(err);
-            res.status(200).render("index", {isLogin: 8,login: req.session.login}); 
-            } 
-            else{        
-                const file = req.file;       
+            res.status(200).render("index", {isLogin: 8,login: req.session.login});
+            }
+            else{       
+                const file = req.file;      
                 if (!file) {
                     const error = new Error('Please choose files');
                     error.httpStatusCode = 400;
                     return next(error);
                 }
-            res.status(200).render("index", {isLogin: 7,login: req.session.login}); 
-            } 
+               
+  
+            res.status(200).render("index", {isLogin: 7,login: req.session.login});
+            }
             })
         });
-});
+ });
+ 
 
 app.post("/ChangeDatos", (req, res) => {
     res.status(200).render("login");
