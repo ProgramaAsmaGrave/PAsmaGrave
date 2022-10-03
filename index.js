@@ -35,7 +35,7 @@ global.isLogin = 0;
 global.login = false;
 global.idPosts=1;
 global.formulario=1;
-global.cerrar=false;
+global.cerrar=0;
 
 //vistas
 app.set("view engine", "ejs");
@@ -84,7 +84,7 @@ mongoose
 //controlador principal
 app.get("/", (req, res) => {
     isLogin= 0;
-    res.status(200).render("index", { login: req.session.login, isLogin: isLogin });
+    res.status(200).render("index", { login: req.session.login, isLogin: isLogin, cerrar:0 });
 });
 
 //Controlador de Admin
@@ -125,7 +125,7 @@ app.get('/seccionAdmin', (req, res) => {
         
     }
     else{
-        res.status(200).render("index", {isLogin: 4,login: req.session.login}); 
+        res.status(200).render("index", {isLogin: 4,login: req.session.login, cerrar:0 }); 
     }
 });
 app.get("/config", (req, res) => {
@@ -133,7 +133,7 @@ app.get("/config", (req, res) => {
         res.status(200).render("config",{isLogin:5,login:req.session.login});
     }
     else{
-        res.status(200).render("index", {login: req.session.login,isLogin: 4});
+        res.status(200).render("index", {login: req.session.login,isLogin: 4, cerrar:0 });
     }
 });
 app.get("/postear", (req, res) => {
@@ -145,7 +145,7 @@ app.get("/postear", (req, res) => {
         });
     }
     else{
-        res.status(200).render("index", {isLogin: 4,login: req.session.login}); 
+        res.status(200).render("index", {isLogin: 4,login: req.session.login, cerrar:0 }); 
     }
 
 
@@ -154,7 +154,7 @@ app.get("/postear", (req, res) => {
 app.get("/logout", (req, res) => {
     if (req.session.login) {
         req.session.login =false;  
-        res.redirect("/");
+        res.status(200).render("index", {isLogin: 4,login: req.session.login, cerrar:1 }); 
         //cerrar=true;
     } else {
         res.redirect("/");
@@ -285,10 +285,10 @@ app.post("/subirpost1", (req, res) => {
         posteo.save((err,db)=>{
             if(err){
             console.log(err);
-            res.status(200).render("index", {isLogin: 8,login: req.session.login}); 
+            res.status(200).render("index", {isLogin: 8,login: req.session.login, cerrar:0 }); 
             } 
             else{
-            res.status(200).render("index", {isLogin: 7,login: req.session.login}); 
+            res.status(200).render("index", {isLogin: 7,login: req.session.login, cerrar:0 }); 
             } 
             })
         });       
@@ -320,7 +320,7 @@ app.post('/subirpost', upload.single('foto'),function (req, res, next) {
         posteo.save((err,db)=>{
             if(err){
             console.log(err);
-            res.status(200).render("index", {isLogin: 8,login: req.session.login});
+            res.status(200).render("index", {isLogin: 8,login: req.session.login, cerrar:0 });
             }
             else{       
                 const file = req.file;      
@@ -331,7 +331,7 @@ app.post('/subirpost', upload.single('foto'),function (req, res, next) {
                 }
                
   
-            res.status(200).render("index", {isLogin: 7,login: req.session.login});
+            res.status(200).render("index", {isLogin: 7,login: req.session.login, cerrar:0 });
             }
             })
         });
