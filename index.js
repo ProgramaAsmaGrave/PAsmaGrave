@@ -50,7 +50,7 @@ app.use(
         saveUninitialized: false,
         cookie: { secure: true },
     })
-);
+ );
 
 
 app.use(morgan("dev"));
