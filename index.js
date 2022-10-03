@@ -167,14 +167,6 @@ app.get("/error404", (req, res) => {
 app.get("/OA", (req, res) => {
     res.status(200).render("Prueba");
   });
-
-app.get('/visualizar/:id', (req, res) => {
-    var id= req.params.id;
-    PostModel.find({ id:id }, (err, post) => {  
-        console.log(post);
-        res.status(200).render("visualizarPost", {data:post});
-    }); 
-});
 app.post("/upload", (req, res) => {
     if (!req.files) {
       return res.status(400).send("No files were uploaded.");
@@ -194,7 +186,13 @@ app.post("/upload", (req, res) => {
       return res.send({ status: "success", path: path });
     });
   });
-
+  app.get('/visualizar/:id', (req, res) => {
+    var id= req.params.id;
+    PostModel.find({ id:id }, (err, post) => {  
+        console.log(post);
+        res.status(200).render("visualizarPost", {data:post});
+    }); 
+});
 app.get('/eliminarPost/:id', (req, res) => {
     var id= req.params.id;
     PostModel.find({ id:id }).remove().exec();
