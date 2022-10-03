@@ -33,6 +33,7 @@ global.isLogin = 0;
 global.login = false;
 global.idPosts=1;
 global.formulario=1;
+global.cerrar=false;
 
 //vistas
 app.set("view engine", "ejs");
@@ -45,6 +46,7 @@ app.use(cors());
 app.use(
     session({
         login: false,
+        cerrar:false,
         secret: "keyboard cat",
         resave: false,
         saveUninitialized: false,
@@ -151,8 +153,10 @@ app.get("/logout", (req, res) => {
     if (req.session.login) {
         req.session.login =false;  
         res.redirect("/");
+        cerrar=true;
     } else {
         res.redirect("/");
+        cerrar=true;
     }
 });
 app.get("/error404", (req, res) => {

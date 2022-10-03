@@ -14,7 +14,11 @@
 <!-- about -->
 <%-include('fragments/about')%>
 <!-- about -->
-          
+           
+
+
+
+
 <div class="container">
     <div class="row">
       
@@ -92,6 +96,27 @@
             Toast4.fire({
               icon: "error",
               title: "NO SE GUARDO TU POST",
+            });
+                      
+                  </script>
+                  <%}%>
+
+                  
+
+                <% if(cerrar==true){ %>
+                  <script>
+              const Toast5 = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              showCloseButton: true
+            });
+      
+            Toast5.fire({
+              icon: "warning",
+              title: "Usted a salido del sistema de administracion",
             });
                       
                   </script>
