@@ -283,7 +283,7 @@ app.post('/subirpost', upload.single('foto'),function (req, res, next) {
         let imagen ;
         let enlace = req.body.enlace;
         let tag = req.body.tag;
-        imgbbUploader("04facdbd2e755d55e56fdc0f9e422f92", "./public/files/"+req.file.filename)
+        imgbbUploader("04facdbd2e755d55e56fdc0f9e422f92", req.foto)
                     .then((res) => console.log(res.url))
                     .catch((error) => console.error(error));
                     imagen= res.url;
