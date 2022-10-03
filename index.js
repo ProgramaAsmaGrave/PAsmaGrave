@@ -26,7 +26,7 @@ var storage = multer.diskStorage({
    
   var upload = multer({ storage: storage })
 
-//hash
+//hashS
 const bcrypt = require("bcrypt");
 const { stringify } = require("querystring");
 
@@ -155,10 +155,9 @@ app.get("/logout", (req, res) => {
     if (req.session.login) {
         req.session.login =false;  
         res.redirect("/");
-        cerrar=true;
+        //cerrar=true;
     } else {
         res.redirect("/");
-        cerrar=true;
     }
 });
 app.get("/error404", (req, res) => {
