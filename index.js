@@ -64,6 +64,8 @@ mongoose
     .then((con) => {
         console.log("Conectado a la DB");
     });
+
+
 //controlador principal
 app.get("/", (req, res) => {
     isLogin= 0;
@@ -111,6 +113,7 @@ app.get('/seccionAdmin', (req, res) => {
         res.status(200).render("index", {isLogin: 4,login: req.session.login, cerrar:0 }); 
     }
 });
+
 app.get("/config", (req, res) => {
     if(req.session.login){
         res.status(200).render("config",{isLogin:5,login:req.session.login});
@@ -119,6 +122,7 @@ app.get("/config", (req, res) => {
         res.status(200).render("index", {login: req.session.login,isLogin: 4, cerrar:0 });
     }
 });
+
 app.get("/postear", (req, res) => {
     if(req.session.login){
         res.status(200).render("postPrueba", { isLogin: isLogin, login: req.session.login });
@@ -130,8 +134,6 @@ app.get("/postear", (req, res) => {
     else{
         res.status(200).render("index", {isLogin: 4,login: req.session.login, cerrar:0 }); 
     }
-
-
 });
 
 app.get("/logout", (req, res) => {
@@ -143,39 +145,39 @@ app.get("/logout", (req, res) => {
         res.redirect("/");
     }
 });
+
 app.get("/error404", (req, res) => {
     res.status(200).render("error404");
 
 });
-app.get("/OA", (req, res) => {
-    res.status(200).render("Prueba");
-  });
+
 app.post("/upload", (req, res) => {
-    if (!req.files) {
-      return res.status(400).send("No files were uploaded.");
+    if(!req.files) {
+        return res.status(400).send("No files were uploaded.");
     }
     const file = req.files.foto;
     const path ="./public/files/" + file.name;
     console.log("HOAA"+path);
     file.mv(path, (err) => {
-      if (err) {
-        
+    if(err) {
         return res.status(500).send(err);
-      }
-      console.log("/files/" + file.name);
+    }
+    console.log("/files/" + file.name);
         imgbbUploader("04facdbd2e755d55e56fdc0f9e422f92", "./public/files/" + file.name)
                     .then((res) => console.log(res.url))
                     .catch((error) => console.error(error));
-      return res.send({ status: "success", path: path });
+    return res.send({ status: "success", path: path });
     });
-  });
-  app.get('/visualizar/:id', (req, res) => {
+});
+
+app.get('/visualizar/:id', (req, res) => {
     var id= req.params.id;
     PostModel.find({ id:id }, (err, post) => {  
         console.log(post);
         res.status(200).render("visualizarPost", {data:post});
     }); 
 });
+
 app.get('/eliminarPost/:id', (req, res) => {
     var id= req.params.id;
     PostModel.find({ id:id }).remove().exec();
@@ -312,17 +314,14 @@ app.post('/subirpost1',function (req, res, next) {
                     error.httpStatusCode = 400;
                     return next(error);
                 }
-               
-  
             res.status(200).render("index", {isLogin: 7,login: req.session.login, cerrar:0 });
             }
             })
         });
- });
- 
+});
+
 
 app.post("/ChangeDatos", (req, res) => {
-    res.status(200).render("login");
     if (req.session.login) {
         Admin.findOneAndUpdate({ nombre: "admin" },{ $set: { contraseña: req.body.contraseña } }, { new: true }, function (err, doc) {
             if (err) console.log("Error ", err);
