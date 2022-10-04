@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const morgan = require("morgan");
-const cloudinary = require("cloudinary").v2;
-const cors = require("cors");
 const session = require("cookie-session");
 const nodemailer = require("nodemailer");
 const  imgbbUploader  =  require ( "imgbb-uploader" ) ;
@@ -12,19 +10,6 @@ const fileUpload = require("express-fileupload");
 const mongoose = require("mongoose");
 const Admin = require("./models/myModel");
 const PostModel = require("./models/postModel");
-
-//Multer
-const multer  = require('multer');
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'public/files');
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now() + ".png");
-    }
-  })
-   
-  var upload = multer({ storage: storage })
 
 //hashS
 const bcrypt = require("bcrypt");
@@ -42,8 +27,6 @@ app.set("view engine", "ejs");
 //Defino la localización de mis vistas
 app.set("views", path.join(__dirname, "views"));
 
-
-app.use(cors());
 //Middlewares
 app.use(
     session({
@@ -263,7 +246,7 @@ app.get("/neumonologia", (req, res) => {
     res.status(200).render("neumonologia");   
 });
 
-app.post("/subirpost1", (req, res) => {
+app.post("/subirpost", (req, res) => {
         let fecha=req.body.fecha;
         let titulo= req.body.titulo;
         let descripcion = req.body.descripcion;
@@ -294,7 +277,7 @@ app.post("/subirpost1", (req, res) => {
         });       
 });
 
-app.post('/subirpost', upload.single('foto'),function (req, res, next) {
+app.post('/subirpost1',function (req, res, next) {
     console.log("holaa"+req.file.filename)
         let fecha=req.body.fecha;
         let titulo= req.body.titulo;
