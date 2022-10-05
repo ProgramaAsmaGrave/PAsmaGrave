@@ -196,7 +196,7 @@ app.get('/verPostsUsuario', (req, res) => {
         }
         else{
             console.log(data);
-            res.status(200).render("verPostsUsuario", {data: data});
+            res.status(200).render("verPostsUsuario", {data: data,login:req.session.login});
         }
     }); 
 });
@@ -208,7 +208,7 @@ app.get('/contactanos', (req, res) => {
         }
         else{
             console.log(data);
-            res.status(200).render("vistaContacto", {data: data});
+            res.status(200).render("vistaContacto", {data: data,login:req.session.login });
         }
     }); 
 });
