@@ -4,7 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-}
+}   
 .contact{
     position: relative;
     min-height: 90.5vh;
@@ -28,13 +28,6 @@
 .content p{
     font-weight: 500;
     color: #fff;
-}
-.container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
 }
 .container .contactInfo{
     width: 50%;
