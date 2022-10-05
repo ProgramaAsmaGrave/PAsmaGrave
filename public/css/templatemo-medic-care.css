@@ -301,6 +301,15 @@ strong {
     margin-bottom: 150px;
 }
 
+.featured-circle {
+    border-radius: 100%;
+    width: 175px;
+    height: 175px;
+    margin: 0 auto;
+    padding: 0 20px;
+    margin-bottom: 150px;
+}
+
 .featured-text {
     font-size: var(--h6-font-size);
     line-height: 2rem;
@@ -320,7 +329,6 @@ strong {
     margin: 0 10px;
     text-shadow: 4px 3px 3px rgba(6, 6, 6, 0.82);
 }
-
 .subtitule {
     background-color: rgba(39, 39, 249, 0.588);
     text-shadow: 4px 1px 3px rgba(6, 6, 6, 0.82);
