@@ -1,78 +1,137 @@
-/* Style inputs, select elements and textareas */
-input[type=text], select, textarea{
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  resize: vertical;
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+label{
+  color: rgb(83, 83, 83);
 }
 
-/* Style the label to display next to the inputs */
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
+#signUpForm {
+  max-width: 800px;
+  background-color: #ffffff;
+  margin: 40px auto;
+  padding: 40px;
+  box-shadow: 0px 6px 18px rgb(0 0 0 / 20%);
+  border-radius: 12px;
 }
-
-/* Style the submit button */
-input[type=submit] {
-  margin-top: 5%;
-  background-color: #30499B;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-  width: 50%;
-  margin-left: 25%;
+#signUpForm .form-header {
+  gap: 5px;
+  text-align: center;
+  font-size: .9em;
 }
-
-/* Style the container */
-.form-bonito{
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  margin-top: 10%;
-  box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.25);
-  margin-bottom: 7.5%;
+#signUpForm .form-header .stepIndicator {
+  position: relative;
+  flex: 1;
+  padding-bottom: 30px;
 }
-
-/* Floating column for labels: 25% width */
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 2px;
+#signUpForm .form-header .stepIndicator.active {
+  font-weight: 600;
 }
-
-/* Floating column for inputs: 75% width */
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
+#signUpForm .form-header .stepIndicator.finish {
+  font-weight: 600;
+  color: #77aeff;
 }
-
-/* Clear floats after the columns */
-.row:after {
+#signUpForm .form-header .stepIndicator::before {
   content: "";
-  display: table;
-  clear: both;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 9;
+  width: 20px;
+  height: 20px;
+  background-color: #80b1fa;
+  border-radius: 50%;
+  border: 3px solid #e7e9f1;
 }
-
-.obligatorio{
-  color: #DB3937;
+#signUpForm .form-header .stepIndicator.active::before {
+  background-color: #63a5f0;
+  border: 3px solid #d1e2f5;
 }
+#signUpForm .form-header .stepIndicator.finish::before {
+  background-color: #3e5e95;
+  border: 3px solid #d8e1ff;
+}
+#signUpForm .form-header .stepIndicator::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  width: 100%;
+  height: 3px;
+  background-color: #f3f3f3;
+}
+#signUpForm .form-header .stepIndicator.active::after {
+  background-color: #a0c5f563;
+}
+#signUpForm .form-header .stepIndicator.finish::after {
+  background-color:#518cf8 ;
+}
+#signUpForm .form-header .stepIndicator:last-child:after {
+  display: none;
+}
+#signUpForm input  {
+  padding: 15px 20px;
+  width: 100%;
+  font-size: 1em;
+  border: 1px solid #d3c9c9;
+  border-radius: 5px;
+}
+#signUpForm input:focus {
+  border: 1px solid #97a1fe;
+  outline: 0;
+}
+#signUpForm input.invalid {
+  border: 1px solid #ffaba5;
+}
+#signUpForm textarea {
+  padding: 15px 20px;
+  width: 100%;
+  font-size: 1em;
+  border: 1px solid #d3c9c9;
+  border-radius: 5px;
+}
+#signUpForm textarea:focus {
+  border: 1px solid #97a1fe;
+  outline: 0;
+}
+#signUpForm textarea.invalid {
+  border: 1px solid #ffaba5;
+}
+#signUpForm .step {
+display: none;
+}
+#signUpForm .form-footer{
+  overflow:auto;
+  gap: 20px;
+}
+#signUpForm .form-footer button{
+  background-color: #307dd4;
+  border: 1px solid #4d77bb !important;
+  color: #ffffff;
+  border: none;
+  padding: 13px 30px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  flex: 1;
+  margin-top: 5px;
+}
+#signUpForm .form-footer button:hover {
+opacity: 0.8;
+}
+.file-upload-button{
+  background-color: #307dd4;
+  border: 1px solid #4d77bb !important;
+  color: #ffffff;
+  border: none;
+  padding: 13px 30px;
+  font-size: 1em;
+  cursor: pointer;
+  flex: 1;
+  margin-top: 5px;
+}
+#signUpForm .form-footer #prevBtn {
+  background-color: #fff;
+  color: #307dd4 !important;
 
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .col-25, .col-75{
-    width: 100%;
-    margin-top: 0;
-  }
-  input[type=submit]{
-    background-color: #30499B;
-    width: 30%;
-    margin-left: 35%;
-    margin-top: 5%;
-  }
 }
