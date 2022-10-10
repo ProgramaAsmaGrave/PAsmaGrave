@@ -58,7 +58,7 @@
     border: solid;
 
     font-family: Roboto;
-    font-size: 26px;
+    font-size: 16px;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -69,6 +69,7 @@
     text-align: center;
     height: 70px;
     text-transform: uppercase;
+   
 }
 
 
