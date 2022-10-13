@@ -60,7 +60,8 @@
     font-stretch: normal;
     line-height: normal;
     letter-spacing: 0.1px;
-    color: white;
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px 2px rgba(0,0,0,0.6);
     margin: 0 0 10px 0;
 }
 
@@ -94,9 +95,9 @@
 .pagina-generica-menu .espec_tab {
     flex: 1;
     display: block;
-    text-decoration: none;
+    text-decoration:none;
     background-color: transparent;
-    border: none;
+    
     font-family: Roboto;
     font-size: 16px;
     font-weight: 300;
@@ -104,7 +105,7 @@
     font-stretch: normal;
     line-height: 75px;
     letter-spacing: 0.1px;
-    color: white;
+    color: rgb(255, 255, 255);
     position: relative;
     text-align: center;
     height: 70px;
@@ -141,7 +142,7 @@
         right: 0;
         top: 15px;
         bottom: 15px;
-        background: white;
+        /*background: rgb(0, 0, 0);*/
     }
     .pagina-generica-menu .espec_tab:hover:before,
     .pagina-generica-menu .espec_tab.active:before {
@@ -162,7 +163,7 @@
         right: 0;
         top: 15px;
         bottom: 15px;
-        background: white;
+        /*background: rgb(0, 0, 0);*/
     }
     .container-menu:before {
         content: '';
@@ -172,7 +173,7 @@
         left: 15;
         top: 15px;
         bottom: 15px;
-        background: white;
+        /*background: rgb(0, 0, 0);*/
     }
     
 }
@@ -204,18 +205,7 @@
     .title-especialidades-single h1 {
         font-size: 40px;
     }
-    .general-especialidades-single h4,
-    .prestaciones-general h4,
-    .informacion-util h4,
-    .requisitos-general h4 {
-        font-size: 24px !important;
-    }
-    .general-especialidades-single p,
-    .prestaciones-general p,
-    .prestaciones-general li,
-    .requisitos-general p {
-        font-size: 14px !important;
-    }
+    
 }
 
 @media (max-width:519px) {
@@ -228,26 +218,8 @@
         margin-top: 25%;
         margin-bottom: 0px;
     }
-    .title-especialidades-single p {
-        font-size: 16px;
-    }
-    .general-especialidades-single h4,
-    .prestaciones-general h4,
-    .informacion-util h4,
-    .requisitos-general h4,
-    .profesionales-especialidades-title h4 {
-        font-size: 23px !important;
-    }
-    .general-especialidades-single p,
-    .prestaciones-general p,
-    .prestaciones-general li,
-    .informacion-util a,
-    .informacion-util p,
-    .formulario-especialidades label,
-    .requisitos-general p,
-    .formulario-especialidades input {
-        font-size: 13px !important;
-    }
+    
+   
 }
 
 @media (max-width:766px) {
@@ -273,25 +245,7 @@
         opacity: 1;
         margin-top: 0px;
     }
-    .especialidades-menu,
-    .pagina-generica-menu {
-        display: block !important;
-    }
-    .especialidades-menu-item button {
-        background-color: #fbff00;
-        text-align: left;
-        display: block;
-        border-top: solid 0.3px #eeeeee;
-        padding: 15px;
-    }
-    .pagina-generica-menu button {
-        background-color: #91ff00;
-        text-align: left;
-        border-top: solid 0.3px #eeeeee;
-        padding: 0 20px;
-        height: 50px;
-        width: 100%;
-    }
+    /*no borrar*/
     .pagina-generica-menu .espec_tab {
         background-color: #30499b;
         text-align: left;
@@ -309,34 +263,7 @@
         max-width: 766px;
         height: 100%;
     }
-    .especialidades-menu-item i,
-    .pagina-generica-menu-item i {
-        display: block;
-        float: right;
-        font-size: 16px;
-        color: rgb(255, 174, 0);
-        opacity: 0.9;
-    }
-    .especialidades-menu-item button:focus,
-    .pagina-generica-menu button:focus,
-    .pagina-generica-menu button.active {
-        background-color: #ff8c00
-    }
-    .pagina-generica-menu-secundario button:focus,
-    .pagina-generica-menu-secundario button.active {
-        background-color: #2600ff;
-    }
-    .especialidades-menu-item .espec_tab:focus,
-    .pagina-generica-menu .espec_tab:focus,
-    .pagina-generica-menu .espec_tab.active {
-        background-color: #ff8c00
-    }
-    .pagina-generica-menu-secundario .espec_tab:focus,
-    .pagina-generica-menu-secundario .espec_tab.active {
-        background-color: #c116b3;
-    }
+    
+    
 }
-
-
-/* Especialidades single GENERAL styles END */
 
