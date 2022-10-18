@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <%-include('fragments/head')%>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <meta charset="UTF-8" />
@@ -24,14 +25,14 @@
 <body>
     <%-include('fragments/admin', {login:login})%>
         
-        <form id="signUpForm" action="/subirpost" enctype="multipart/form-data" method="post">
+        <form id="signUpForm" action="/subirpost" enctype="multipart/form-data" method="post" data-mdb-toggle="animation">
             <h3 class="text-center fs-3">Crear post</h3>
             <div class="form-header d-flex mb-4">
                 <span class="stepIndicator"></span>
                 <span class="stepIndicator"></span>
             </div>
 
-            <div class="step">
+            <div class="step animate__animated animate__backInLeft" >
                 <div class="mb-3">
                     <div class="row needs-validation" novalidate>
                         <div class="col-25">
@@ -66,7 +67,7 @@
                 </div>
                 </div>
             </div>
-            <div class="step">
+            <div class="step animate__animated animate__backInLeft" >
                 <div class="row ">
                     <div class="col-25">
                         <ion-icon name="document-attach-outline"></ion-icon>
